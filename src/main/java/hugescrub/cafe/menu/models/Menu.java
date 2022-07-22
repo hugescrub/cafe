@@ -5,8 +5,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
+@Table(name = "menus")
 public class Menu {
 
     @Id
@@ -16,7 +18,6 @@ public class Menu {
     @NotBlank
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Size(max = 20)
     private EType type;
 
     @NotBlank
@@ -31,6 +32,12 @@ public class Menu {
     @NotBlank
     @NotNull
     private LocalTime availableUntil;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "menu_items",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private List<MenuItem> items;
 
     public Menu() {
     }
@@ -81,5 +88,13 @@ public class Menu {
 
     public void setAvailableUntil(LocalTime availableUntil) {
         this.availableUntil = availableUntil;
+    }
+
+    public List<MenuItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<MenuItem> items) {
+        this.items = items;
     }
 }
