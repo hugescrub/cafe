@@ -1,2 +1,15 @@
 # Cafe app.
-- Menu and simple auth to be implemented.
+A simple cafe application with various menus and dishes.
+
+Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD operations on these menus aside from ***Unauthorized*** user who can only view them.
+
+## To be done
+- Backend part (Spring stack, REST, MySQL).
+- Frontend part (React or Vue, Bootstrap).
+
+## Additional things to be added
+**Logging**
+
+**Database dummy data**
+
+**Database init scripts**
