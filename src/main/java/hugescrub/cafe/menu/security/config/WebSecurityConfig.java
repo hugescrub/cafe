@@ -21,10 +21,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
+    private final AuthEntryPoint entryPoint;
 
     @Autowired
-    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService) {
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, AuthEntryPoint entryPoint) {
         this.userDetailsService = userDetailsService;
+        this.entryPoint = entryPoint;
     }
 
     @Override
@@ -51,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/private/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login.html").failureUrl("/login-failure.html").permitAll();
+                .httpBasic()
+                .authenticationEntryPoint(entryPoint);
     }
 }
