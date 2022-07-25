@@ -39,6 +39,15 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "User id = '" + id +
+                "'; Username = '" + username +
+                "'; Email = '" + email +
+                "'}";
+    }
+
     public Long getId() {
         return id;
     }
