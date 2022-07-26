@@ -55,6 +55,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.0.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20220320</version>
+		</dependency>
 	</dependencies>
 
 	<build>
