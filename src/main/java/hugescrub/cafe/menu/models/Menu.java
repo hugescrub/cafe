@@ -1,5 +1,6 @@
 package hugescrub.cafe.menu.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -27,10 +28,12 @@ public class Menu {
 
     @NotBlank
     @NotNull
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime availableFrom;
 
     @NotBlank
     @NotNull
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime availableUntil;
 
     @ManyToMany(fetch = FetchType.LAZY)
