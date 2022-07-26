@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/private/auth")
+@RequestMapping("/auth")
 public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
@@ -87,8 +87,8 @@ public class AuthController {
         );
 
         userRepository.save(user);
-
         log.info("New user registered: " + user);
+
         return ResponseEntity
                 .ok(new MessageResponse("User registered successfully"));
     }
