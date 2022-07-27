@@ -16,7 +16,6 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @NotNull
     @Enumerated(EnumType.STRING)
     private EType type;
@@ -26,12 +25,10 @@ public class Menu {
     @Size(min = 5, max = 20)
     private String title;
 
-    @NotBlank
     @NotNull
     @JsonFormat(pattern = "HH:mm")
     private LocalTime availableFrom;
 
-    @NotBlank
     @NotNull
     @JsonFormat(pattern = "HH:mm")
     private LocalTime availableUntil;

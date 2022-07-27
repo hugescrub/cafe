@@ -11,17 +11,9 @@ import java.util.List;
 public interface MenuRepository extends JpaRepository<Menu, Long> {
     Boolean existsByTitle(String title);
 
-    Boolean existsByAvailableFrom(LocalTime availableFrom);
-
-    Boolean existsByAvailableUntil(LocalTime availableUntil);
-
     Menu findByTitle(String title);
 
-    List<Menu> findByAvailableFromAndAvailableUntil(LocalTime availableFrom, LocalTime availableUntil);
-
-    List<Menu> findByAvailableFrom(LocalTime availableFrom);
-
-    List<Menu> findByAvailableUntil(LocalTime availableUntil);
+    List<Menu> findByAvailableFromGreaterThanEqualAndAvailableUntilLessThanEqual(LocalTime availableFrom, LocalTime availableUntil);
 
     List<Menu> findAllByType(EType type);
 }

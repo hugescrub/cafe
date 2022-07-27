@@ -1,7 +1,10 @@
 package hugescrub.cafe.menu.models;
 
-public enum EType {
+import java.io.Serializable;
+
+public enum EType implements Serializable {
     BREAKFAST,
     LUNCH,
-    DINNER
+    DINNER,
+    GENERIC
 }
