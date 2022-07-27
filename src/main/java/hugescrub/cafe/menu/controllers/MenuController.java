@@ -1,16 +1,15 @@
 package hugescrub.cafe.menu.controllers;
 
+import hugescrub.cafe.menu.dto.MenuDto;
 import hugescrub.cafe.menu.models.Menu;
 import hugescrub.cafe.menu.payload.response.MessageResponse;
 import hugescrub.cafe.menu.repository.MenuRepository;
+import hugescrub.cafe.menu.security.services.MenuService;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalTime;
 import java.util.List;
 
 @Slf4j
@@ -20,10 +19,12 @@ import java.util.List;
 public class MenuController {
 
     private final MenuRepository menuRepository;
+    private final MenuService menuService;
 
     @Autowired
-    public MenuController(MenuRepository menuRepository) {
+    public MenuController(MenuRepository menuRepository, MenuService menuService) {
         this.menuRepository = menuRepository;
+        this.menuService = menuService;
     }
 
     @GetMapping("/all")
@@ -47,26 +48,39 @@ public class MenuController {
     }
 
     /**
-     * Getting only those menus available starting from specific time (Ex. 08:00, 10:00 etc).
+     * Getting only those menus available between specific time (Ex. 08:00, 10:00 etc).
      *
-     * @param availableFrom request field, String data type is applied since
-     *                      LocalTime is not applicable due to serialization problems.
+     * @param menuDto request DTO.
      *
      * @return returns list for all corresponding entries.
      */
     @GetMapping("/available")
-    public ResponseEntity<?> getByAvailableFrom(@RequestBody String availableFrom) {
-        LocalTime time = LocalTime.parse(new JSONObject(availableFrom).getString("availableFrom"));
-        if (menuRepository.existsByAvailableFrom(time)) {
-            List<Menu> menuList = menuRepository.findByAvailableFrom(time);
+    public ResponseEntity<?> getByTimeAvailable(@RequestBody MenuDto menuDto) {
+        try {
+            List<Menu> menuList = menuRepository.findByAvailableFromGreaterThanEqualAndAvailableUntilLessThanEqual(menuDto.getAvailableFrom(), menuDto.getAvailableUntil());
+            log.info("Queried menu list:\n" + menuList.toString());
             return ResponseEntity
                     .ok()
                     .body(menuList);
-        } else {
+        } catch (Exception e) {
+            log.warn(e.getMessage());
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Nothing was found with time provided."));
         }
+    }
 
+    @PostMapping("/add")
+    public ResponseEntity<?> addMenu(@RequestBody MenuDto menuDto) {
+        if (!menuRepository.existsByTitle(menuDto.getTitle())) {
+            menuService.build(menuDto);
+            return ResponseEntity
+                    .ok()
+                    .body(new MessageResponse("New menu added successfully."));
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Menu with such title already exists.");
+        }
     }
 }
