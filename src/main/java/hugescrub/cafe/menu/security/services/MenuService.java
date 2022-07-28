@@ -27,4 +27,13 @@ public class MenuService {
         menuRepository.save(menu);
         log.info("New menu added.\n" + menu);
     }
+
+    public void update (MenuDto menuDto){
+        Menu menu = menuRepository.findByTitle(menuDto.getTitle());
+        menu.setType(menuDto.getType());
+        menu.setAvailableFrom(menuDto.getAvailableFrom());
+        menu.setAvailableUntil(menuDto.getAvailableUntil());
+        menuRepository.save(menu);
+        log.info("Menu updated: " + menu.getTitle() + "\n" + menu);
+    }
 }

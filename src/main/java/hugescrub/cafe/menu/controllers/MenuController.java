@@ -1,7 +1,9 @@
 package hugescrub.cafe.menu.controllers;
 
 import hugescrub.cafe.menu.dto.MenuDto;
+import hugescrub.cafe.menu.models.EType;
 import hugescrub.cafe.menu.models.Menu;
+import hugescrub.cafe.menu.payload.response.MenuUpdateResponse;
 import hugescrub.cafe.menu.payload.response.MessageResponse;
 import hugescrub.cafe.menu.repository.MenuRepository;
 import hugescrub.cafe.menu.security.services.MenuService;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalTime;
 import java.util.List;
 
 @Slf4j
@@ -81,6 +84,27 @@ public class MenuController {
             return ResponseEntity
                     .badRequest()
                     .body("Menu with such title already exists.");
+        }
+    }
+
+    @PatchMapping("/update")
+    public ResponseEntity<?> updateMenu(@RequestBody MenuDto menuDto) {
+
+        String title = menuDto.getTitle(); // title is never changed
+        // fields to be updated
+        EType newType = menuDto.getType();
+        LocalTime newFrom = menuDto.getAvailableFrom();
+        LocalTime newUntil = menuDto.getAvailableUntil();
+
+        if (menuRepository.existsByTitle(title)){
+            menuService.update(menuDto);
+            return ResponseEntity
+                    .ok()
+                    .body(new MenuUpdateResponse(newType, title, newFrom, newUntil));
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Unable to update menu: title doesn't exist." ));
         }
     }
 }
