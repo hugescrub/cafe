@@ -2,33 +2,44 @@ package hugescrub.cafe.menu.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "items")
-public class MenuItem {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @NotBlank
     @Size(min = 2, max = 30)
     private String name;
 
-    @NotBlank
+    @NotNull
     private Double price;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private EItem itemType;
 
-    public MenuItem() {
+    public Item() {
     }
 
-    public MenuItem(String name, Double price, EItem itemType) {
+    public Item(String name, Double price, EItem itemType) {
         this.name = name;
         this.price = price;
         this.itemType = itemType;
+    }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "Item name = '" + name +
+                "'\nItem price = '" + price + '₽' +'\'' +
+                "\nItem type = '" + itemType +
+                "'\n}";
     }
 
     public String getName() {

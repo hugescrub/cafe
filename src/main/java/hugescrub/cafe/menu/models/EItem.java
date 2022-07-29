@@ -1,6 +1,8 @@
 package hugescrub.cafe.menu.models;
 
-public enum EItem {
+import java.io.Serializable;
+
+public enum EItem implements Serializable {
     CLASSIC,
     FRENCH,
     ITALIAN

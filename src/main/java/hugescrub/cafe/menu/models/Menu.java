@@ -37,7 +37,7 @@ public class Menu {
     @JoinTable(name = "menu_items",
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
-    private List<MenuItem> items;
+    private List<Item> items;
 
     public Menu() {
     }
@@ -90,11 +90,11 @@ public class Menu {
         this.availableUntil = availableUntil;
     }
 
-    public List<MenuItem> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<MenuItem> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 }
