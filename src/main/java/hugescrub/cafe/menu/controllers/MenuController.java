@@ -76,6 +76,11 @@ public class MenuController {
         }
     }
 
+    @GetMapping("/active/{active_flag}")
+    public List<Menu> getByActiveFlag(@PathVariable Boolean active_flag){
+        return menuRepository.findAllByIsActive(active_flag);
+    }
+
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     public ResponseEntity<?> addMenu(@RequestBody MenuDto menuDto) {
@@ -119,7 +124,7 @@ public class MenuController {
         String itemName = request.getItemName();
         String menuTitle = request.getMenuTitle();
 
-        if (menuRepository.existsByTitle(menuTitle) && itemRepository.existsByName(itemName)){
+        if (menuRepository.existsByTitle(menuTitle) && itemRepository.existsByName(itemName)) {
             menuService.addItem(itemName, menuTitle);
             return ResponseEntity
                     .ok()
@@ -128,6 +133,26 @@ public class MenuController {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Unable to add item to menu: either menu title or item name doesn't exist."));
+        }
+    }
+
+    @PatchMapping("/archive/{menuTitle}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    public ResponseEntity<?> archiveMenu(@PathVariable String menuTitle) {
+        if (menuRepository.existsByTitle(menuTitle)) {
+            // get menu object and set ACTIVE flag to false
+            Menu menu = menuRepository.findByTitle(menuTitle);
+            menu.setActive(false);
+
+            // save updated menu
+            menuRepository.save(menu);
+            return ResponseEntity
+                    .ok()
+                    .body(new MessageResponse("Successfully archived menu: '" + menuTitle + "'."));
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Unable to archive menu: title doesn't exist."));
         }
     }
 }

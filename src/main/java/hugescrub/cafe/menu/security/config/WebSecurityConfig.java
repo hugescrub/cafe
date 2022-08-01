@@ -50,7 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/auth/login", "/menu/all", "/menu/{title}", "/menu/available", "/items/all", "/items/{itemType}").permitAll()
+                .authorizeRequests().antMatchers("/auth/login",
+                        "/menu/all", "/menu/{title}", "/menu/available", "/menu/active/{active_flag}",
+                        "/items/all", "/items/{itemType}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
