@@ -6,7 +6,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "items")
+@Table(name = "items",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "name")
+        })
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +40,7 @@ public class Item {
     public String toString() {
         return "{\n" +
                 "Item name = '" + name +
-                "'\nItem price = '" + price + '₽' +'\'' +
+                "'\nItem price = '" + price + '₽' + '\'' +
                 "\nItem type = '" + itemType +
                 "'\n}";
     }
