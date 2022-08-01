@@ -39,14 +39,18 @@ public class Menu {
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items;
 
+    @NotNull
+    private Boolean isActive;
+
     public Menu() {
     }
 
-    public Menu(EType type, String title, LocalTime availableFrom, LocalTime availableUntil) {
+    public Menu(EType type, String title, LocalTime availableFrom, LocalTime availableUntil, Boolean isActive) {
         this.type = type;
         this.title = title;
         this.availableFrom = availableFrom;
         this.availableUntil = availableUntil;
+        this.isActive = isActive;
     }
 
     @Override
@@ -56,6 +60,10 @@ public class Menu {
                 "'\nMenu title = '" + title + '\'' +
                 "\nAvailable between = '" + availableFrom + "-" + availableUntil +
                 "'\n}";
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public EType getType() {
@@ -96,5 +104,13 @@ public class Menu {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

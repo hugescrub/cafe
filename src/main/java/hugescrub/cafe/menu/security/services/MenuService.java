@@ -28,6 +28,7 @@ public class MenuService {
         menu.setTitle(menuDto.getTitle());
         menu.setAvailableFrom(menuDto.getAvailableFrom());
         menu.setAvailableUntil(menuDto.getAvailableUntil());
+        menu.setActive(true);
         menuRepository.save(menu);
         log.info("New menu added.\n" + menu);
     }

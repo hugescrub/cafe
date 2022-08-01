@@ -16,4 +16,6 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     List<Menu> findByAvailableFromGreaterThanEqualAndAvailableUntilLessThanEqual(LocalTime availableFrom, LocalTime availableUntil);
 
     List<Menu> findAllByType(EType type);
+
+    List<Menu> findAllByIsActive(Boolean isActive);
 }
