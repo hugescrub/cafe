@@ -45,6 +45,20 @@ public class Item {
                 "'\n}";
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object)
+            return true;
+        if (object == null || getClass() != object.getClass())
+            return false;
+        Item item = (Item) object;
+        return id.equals(item.id);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
