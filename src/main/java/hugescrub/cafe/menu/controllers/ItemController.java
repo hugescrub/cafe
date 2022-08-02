@@ -61,4 +61,20 @@ public class ItemController {
                     .body(new MessageResponse("Item with such name already exists."));
         }
     }
+
+    @DeleteMapping("/remove/{item_id}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    public ResponseEntity<?> removeItem(@PathVariable Long item_id) {
+        if (itemRepository.existsById(item_id)) {
+            Item item = itemRepository.findById(item_id).get();
+            itemService.remove(item);
+            return ResponseEntity
+                    .ok()
+                    .body(new MessageResponse("Successfully removed an item with id: " + item_id));
+        } else {
+         return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Unable to remove an item with id: " + item_id + ". Id not found."));
+        }
+    }
 }

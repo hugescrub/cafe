@@ -33,7 +33,7 @@ public class Menu {
     @JsonFormat(pattern = "HH:mm")
     private LocalTime availableUntil;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinTable(name = "menu_items",
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))

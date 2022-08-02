@@ -1,6 +1,7 @@
 package hugescrub.cafe.menu.repository;
 
 import hugescrub.cafe.menu.models.EType;
+import hugescrub.cafe.menu.models.Item;
 import hugescrub.cafe.menu.models.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,4 +19,6 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     List<Menu> findAllByType(EType type);
 
     List<Menu> findAllByIsActive(Boolean isActive);
+
+    List<Menu> findAllByItems(Item item);
 }
