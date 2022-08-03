@@ -27,7 +27,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/auth")
 public class AuthController {
     private final UserRepository userRepository;
+
     private final PasswordEncoder encoder;
+
     private final AuthenticationManager authenticationManager;
 
     @Autowired

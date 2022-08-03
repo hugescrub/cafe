@@ -25,7 +25,9 @@ import java.util.List;
 public class MenuController {
 
     private final MenuRepository menuRepository;
+
     private final ItemRepository itemRepository;
+
     private final MenuService menuService;
 
     @Autowired
@@ -57,7 +59,6 @@ public class MenuController {
 
     /**
      * Getting only those menus available between specific time (Ex. 08:00, 10:00 etc).
-     *
      * @param menuDto request DTO.
      * @return returns list for all corresponding entries.
      */
