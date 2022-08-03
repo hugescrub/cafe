@@ -44,6 +44,7 @@ public class MenuController {
     public ResponseEntity<?> getMenusByTitle(@PathVariable String title) {
         if (menuRepository.existsByTitle(title)) {
             Menu menu = menuRepository.findByTitle(title);
+            log.info("Requested menu info with title: " + title);
             return ResponseEntity
                     .ok()
                     .body(menu);
@@ -121,7 +122,10 @@ public class MenuController {
     @PatchMapping("/addItem")
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     public ResponseEntity<?> addItemToMenu(@RequestBody AddItemRequest request) {
+        // item we're adding to menu
         String itemName = request.getItemName();
+
+        // menu to which we're adding an item
         String menuTitle = request.getMenuTitle();
 
         if (menuRepository.existsByTitle(menuTitle) && itemRepository.existsByName(itemName)) {
@@ -146,6 +150,7 @@ public class MenuController {
 
             // save updated menu
             menuRepository.save(menu);
+            log.info("Successfully archived menu with id: " + menu.getId());
             return ResponseEntity
                     .ok()
                     .body(new MessageResponse("Successfully archived menu: '" + menuTitle + "'."));

@@ -49,7 +49,7 @@ public class AuthController {
             List<String> roles = userDetails.getAuthorities().stream()
                     .map(item -> item.getAuthority())
                     .collect(Collectors.toList());
-
+            log.info("User signed in successfully: " + loginRequest.getUsername());
             return ResponseEntity
                     .ok(new UserInfoResponse(
                             userDetails.getId(),
@@ -57,7 +57,7 @@ public class AuthController {
                             userDetails.getEmail(),
                             roles));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug(e.getMessage());
             return ResponseEntity
                     .badRequest()
                     .body(e.getMessage());

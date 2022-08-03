@@ -37,6 +37,7 @@ public class ItemController {
     public ResponseEntity<?> getItemsByTitle(@PathVariable String itemType) {
         if (itemRepository.existsByItemType(EItem.valueOf(itemType))) {
             List<Item> items = itemRepository.findAllByItemType(EItem.valueOf(itemType));
+            log.info("Requested all items with item type: " + itemType);
             return ResponseEntity
                     .ok()
                     .body(items);
@@ -68,6 +69,7 @@ public class ItemController {
         if (itemRepository.existsById(item_id)) {
             Item item = itemRepository.findById(item_id).get();
             itemService.remove(item);
+            log.info("An item was removed successfully.");
             return ResponseEntity
                     .ok()
                     .body(new MessageResponse("Successfully removed an item with id: " + item_id));

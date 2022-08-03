@@ -55,5 +55,7 @@ public class MenuService {
         // add a new item for existing menu
         menu.getItems().add(item);
         menuRepository.save(menu);
+        log.info("An item with id: '" + item.getId() +
+                "'. Was successfully added to the menu with id: '" + menu.getId() + "'.");
     }
 }

@@ -18,7 +18,6 @@ public class ItemService {
     private final MenuRepository menuRepository;
 
     @Autowired
-
     public ItemService(ItemRepository itemRepository, MenuRepository menuRepository) {
         this.itemRepository = itemRepository;
         this.menuRepository = menuRepository;
