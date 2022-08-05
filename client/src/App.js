@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import Items from './Items';
 import Categories from "./Categories";
-import Menus from "./Menus";
+import MenuList from "./MenuList";
+import Menu from "./Menu";
 import items from "./data";
 import logo from "./logo.JPG";
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 export default function App() {
+
     const [menus] = useState([]);
-    const [setMenuItems, menuItems] = useState(items)
+    const [menuItems, setMenuItems] = useState(items);
     const [activeCategory, setActiveCategory] = useState("");
     const [categories, setCategories] = useState(allCategories);
 
@@ -33,9 +35,7 @@ export default function App() {
           activeCategory={activeCategory}
           filterItems={filterItems}
         />
-        <Menus menus={menus} />
-        <br/>
-        <Items items={menuItems} />
+        <MenuList menus={menus} />
       </section>
     </main>
   );

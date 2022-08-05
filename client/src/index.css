@@ -144,6 +144,24 @@ p {
   padding-top: 1rem;
 }
 
+.button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 2px 16px;
+  height: 23px;
+  min-width: 51px;
+  min-height: 23px;
+  border: none;
+  color: #fff;
+  background-color: #4f545c;
+  transition: background-color .17s ease, color .17s ease;
+}
+
 @media screen and (min-width: 768px) {
   .menu-item {
     grid-template-columns: 225px 1fr;

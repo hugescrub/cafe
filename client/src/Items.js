@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 
-export default function ItemsData() {
-  const [Items, fetchItems] = useState([]);
+export default function Items() {
+  const [Items, setItems] = useState([]);
 
   const getData = () => {
     fetch('http://localhost:8080/items/all')
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        fetchItems(res);
+        setItems(res);
       })
   }
 
