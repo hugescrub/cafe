@@ -8,7 +8,6 @@ Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD
 - Frontend part (React).
 
 ## Additional things to be added
-**Logging**
 
 **Database dummy data**
 
