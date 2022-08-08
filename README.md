@@ -5,7 +5,7 @@ Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD
 
 ## To be done
 - Backend part (Spring stack, REST, MySQL).
-- Frontend part (React or Vue, Bootstrap).
+- Frontend part (React).
 
 ## Additional things to be added
 **Logging**
