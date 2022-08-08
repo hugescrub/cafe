@@ -7,6 +7,7 @@ import hugescrub.cafe.menu.repository.ItemRepository;
 import hugescrub.cafe.menu.repository.MenuRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -47,7 +48,7 @@ public class MenuService {
         log.info("Menu updated: " + menu.getTitle() + "\n" + menu);
     }
 
-    public void addItem(String itemName, String menuTitle) {
+    public void addItem(String itemName, String menuTitle) throws DataIntegrityViolationException {
         // get menu and item objects
         Menu menu = menuRepository.findByTitle(menuTitle);
         Item item = itemRepository.findByName(itemName);

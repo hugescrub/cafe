@@ -11,6 +11,7 @@ import hugescrub.cafe.menu.repository.MenuRepository;
 import hugescrub.cafe.menu.security.services.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -130,10 +131,17 @@ public class MenuController {
         String menuTitle = request.getMenuTitle();
 
         if (menuRepository.existsByTitle(menuTitle) && itemRepository.existsByName(itemName)) {
-            menuService.addItem(itemName, menuTitle);
-            return ResponseEntity
-                    .ok()
-                    .body(new MessageResponse("New item added to the menu successfully."));
+            try {
+                menuService.addItem(itemName, menuTitle);
+                return ResponseEntity
+                        .ok()
+                        .body(new MessageResponse("New item added to the menu successfully."));
+            } catch (DataIntegrityViolationException e) {
+                log.warn("Failed to add an item to the menu.");
+                return ResponseEntity
+                        .badRequest()
+                        .body(new MessageResponse("Declined: the item is already added to the menu."));
+            }
         } else {
             return ResponseEntity
                     .badRequest()

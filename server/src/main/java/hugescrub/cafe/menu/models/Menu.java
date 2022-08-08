@@ -36,7 +36,8 @@ public class Menu {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinTable(name = "menu_items",
             joinColumns = @JoinColumn(name = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id"))
+            inverseJoinColumns = @JoinColumn(name = "item_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"menu_id", "item_id"}))
     private List<Item> items;
 
     @NotNull
