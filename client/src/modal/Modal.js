@@ -1,5 +1,6 @@
 import React from "react";
 import "./Modal.css";
+import { Link } from "react-router-dom";
 
 export default class Modal extends React.Component {
   state = {
@@ -45,7 +46,9 @@ export default class Modal extends React.Component {
                     <tbody>
                       {items.map((item) => (
                         <tr>
-                          <td>{item.name}</td>
+                          <td>
+                            <Link to={"/items/" + item.id}>{item.name}</Link>
+                          </td>
                           <td>{item.itemType}</td>
                           <td>{item.price}&nbsp;₽</td>
                         </tr>
