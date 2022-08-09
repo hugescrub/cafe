@@ -33,8 +33,22 @@ public class ItemController {
         return itemRepository.findAll();
     }
 
+    @GetMapping
+    public ResponseEntity<?> getItemById(@RequestParam(value = "id") Long itemId) {
+        if(itemRepository.existsById(itemId)){
+            Item item = itemRepository.findById(itemId).get();
+            return ResponseEntity
+                    .ok()
+                    .body(item);
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Nothing found with id: " + itemId));
+        }
+    }
+
     @GetMapping("/{itemType}")
-    public ResponseEntity<?> getItemsByTitle(@PathVariable String itemType) {
+    public ResponseEntity<?> getItemsByType(@PathVariable String itemType) {
         if (itemRepository.existsByItemType(EItem.valueOf(itemType))) {
             List<Item> items = itemRepository.findAllByItemType(EItem.valueOf(itemType));
             log.info("Requested all items with item type: " + itemType);
