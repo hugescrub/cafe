@@ -35,8 +35,9 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity<?> getItemById(@RequestParam(value = "id") Long itemId) {
-        if(itemRepository.existsById(itemId)){
+        if (itemRepository.existsById(itemId)) {
             Item item = itemRepository.findById(itemId).get();
+            log.info("Requested item with id: " + itemId);
             return ResponseEntity
                     .ok()
                     .body(item);
@@ -88,7 +89,7 @@ public class ItemController {
                     .ok()
                     .body(new MessageResponse("Successfully removed an item with id: " + item_id));
         } else {
-         return ResponseEntity
+            return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Unable to remove an item with id: " + item_id + ". Id not found."));
         }
