@@ -84,6 +84,11 @@ public class MenuController {
         return menuRepository.findAllByIsActive(active_flag);
     }
 
+    @GetMapping
+    public List<Menu> getAllByType(@RequestParam(value = "type") EType type){
+        return menuRepository.findAllByType(type);
+    }
+
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     public ResponseEntity<?> addMenu(@RequestBody MenuDto menuDto) {

@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/auth/login",
                         "/menu/all", "/menu/{title}", "/menu/available", "/menu/active/{active_flag}",
                         "/items/all", "/items/{itemType}").permitAll()
-                .regexMatchers("^\\/items\\?id=\\d(?:\\d+)?$").permitAll()
+                .regexMatchers("^\\/items\\?id=\\d(?:\\d+)?$", "^\\/menu\\?type=(?:BREAKFAST|GENERIC|DINNER|LUNCH)$").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
