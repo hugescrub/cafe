@@ -1,20 +1,28 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Categories = ({ categories, filterItems, activeCategory }) => {
+const Categories = ({ categories, activeCategory }) => {
+
+  function refreshPage() {
+    document.location.reload(true);
+  }
+
   return (
     <div className="btn-container">
       {categories.map((category, index) => {
         return (
-          <button
-            type="button"
-            className={`${
-              activeCategory === category ? "filter-btn active" : "filter-btn"
-            }`}
-            key={index}
-            onClick={() => filterItems(category)}
-          >
-            {category}
-          </button>
+          <Link to={"/menus/" + category}>
+            <button
+              type="button"
+              className={`${
+                activeCategory === category ? "filter-btn active" : "filter-btn"
+              }`}
+              key={index}
+              onClick={() => refreshPage()}
+            >
+              {category}
+            </button>
+          </Link>
         );
       })}
     </div>
