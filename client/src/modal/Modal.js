@@ -30,6 +30,7 @@ export default class Modal extends React.Component {
                 <h4 className="price-availability">
                   Between {availableFrom} - {availableUntil}
                 </h4>
+                <span className="close-btn" onClick={() => this.setState({ isOpen: false })}>&times;</span>
               </header>
               <div>
                 <h1> Available dishes </h1>
@@ -47,7 +48,15 @@ export default class Modal extends React.Component {
                       {items.map((item) => (
                         <tr>
                           <td>
-                            <Link to={"/items/" + item.id}>{item.name}</Link>
+                            <Link
+                              to={"/items/" + item.id}
+                              style={{
+                                textDecoration: "none",
+                                color: "#c59d5f",
+                              }}
+                            >
+                              {item.name}
+                            </Link>
                           </td>
                           <td>{item.itemType}</td>
                           <td>{item.price}&nbsp;₽</td>
@@ -57,12 +66,6 @@ export default class Modal extends React.Component {
                   </table>
                 </div>
               </div>
-              <button
-                className="button"
-                onClick={() => this.setState({ isOpen: false })}
-              >
-                Back
-              </button>
             </div>
           </div>
         )}

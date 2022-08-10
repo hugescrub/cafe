@@ -4,7 +4,7 @@ import "./item.css";
 
 export default function Item() {
   const [Item, setItem] = useState([]);
-  const { id, name, price, itemType, img, description, content } = Item;
+  const { id, name, price, itemType, description, image } = Item;
 
   const location = useLocation();
   const searchId = useLocation().pathname.substring(
@@ -28,16 +28,15 @@ export default function Item() {
     <div className="item-page">
       <div className="details" key={id}>
         <div className="big-img">
-          <img src={img} alt="" />
+          <img src={`data:image/jpeg;base64,${image}`} />
         </div>
         <div className="box">
           <div className="row">
             <h2>{name}</h2>
             <span>{price}&nbsp;₽</span>
           </div>
-          <p>{itemType}</p>
-          <p>{description}</p>
-          <p>{content}</p>
+          <p className="type">{itemType}</p>
+          <p className="description">{description}</p>
           <Link to="/">
             <button className="return">Return to menus</button>
           </Link>
