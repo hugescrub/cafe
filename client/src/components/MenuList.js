@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Menu from "./Menu";
 import Modal from "../modal/Modal";
 
-export default function MenuList() {
+export default function MenuList({ type }) {
   const ACTIVE_FLAG = "/true";
   const INACTIVE_FLAG = "/false";
   const [MenuList, setMenuList] = useState([]);
+
+  const getTypeData = () => {
+    fetch("http://localhost:8080/menu?type=" + type)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setMenuList(res);
+      });
+  };
 
   const getData = () => {
     fetch("http://localhost:8080/menu/active" + INACTIVE_FLAG)
@@ -16,22 +24,21 @@ export default function MenuList() {
       });
   };
 
-  function handleClick(menu) {
-    console.log(menu);
-    return <Menu menu={menu} />;
-  }
-
   useEffect(() => {
-    getData();
+    if(type === "ALL"){
+      getData();
+    } else {
+      getTypeData();
+    }
   }, []);
 
   return (
     <div className="section-center">
       {MenuList.map((menu) => {
-        const { id, type, title, img, availableFrom, availableUntil } = menu;
+        const { id, type, title, availableFrom, availableUntil, image } = menu;
         return (
           <article key={id} className="menu-element">
-            <img src={img} alt={title} className="photo" />
+            <img src={`data:image/jpeg;base64,${image}`} alt={title} className="photo" />
             <div className="item-info">
               <header>
                 <h4>{title}</h4>
@@ -40,9 +47,6 @@ export default function MenuList() {
                 Between {availableFrom} - {availableUntil}
               </h4>
               <p className="item-text">{type}</p>
-              <button className="button" onClick={() => handleClick(menu)}>
-                Callback
-              </button>
               <Modal menu={menu} />
             </div>
           </article>
