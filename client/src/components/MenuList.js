@@ -30,7 +30,7 @@ export default function MenuList({ type }) {
     } else {
       getTypeData();
     }
-  }, []);
+  }, [type]);
 
   return (
     <div className="section-center">
