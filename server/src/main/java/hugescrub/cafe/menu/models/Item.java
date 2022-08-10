@@ -27,6 +27,13 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private EItem itemType;
 
+    @NotBlank
+    @Size(max = 150)
+    private String description;
+
+    @Column(columnDefinition = "longblob")
+    byte[] image;
+
     public Item() {
     }
 
@@ -81,5 +88,21 @@ public class Item {
 
     public void setItemType(EItem itemType) {
         this.itemType = itemType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

@@ -43,6 +43,9 @@ public class Menu {
     @NotNull
     private Boolean isActive;
 
+    @Column(columnDefinition = "longblob")
+    private byte[] image;
+
     public Menu() {
     }
 
@@ -113,5 +116,13 @@ public class Menu {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

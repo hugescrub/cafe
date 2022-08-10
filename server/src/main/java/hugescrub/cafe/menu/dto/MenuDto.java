@@ -15,4 +15,5 @@ public class MenuDto {
     private String title;
     private LocalTime availableFrom;
     private LocalTime availableUntil;
+    private byte[] image;
 }

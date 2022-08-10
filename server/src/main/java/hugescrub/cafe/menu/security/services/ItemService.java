@@ -28,6 +28,8 @@ public class ItemService {
         item.setName(itemDto.getName());
         item.setPrice(itemDto.getPrice());
         item.setItemType(itemDto.getItemType());
+        item.setDescription(itemDto.getDescription());
+        item.setImage(itemDto.getImage());
         itemRepository.save(item);
         log.info("New item added:\n" + item);
     }
@@ -41,6 +43,7 @@ public class ItemService {
         // get menu list
         List<Menu> menuList = menuRepository.findAllByItems(item);
         for (Menu menu : menuList) {
+
             // get menu's itemList
             List<Item> itemList = menu.getItems();
             // remove required item

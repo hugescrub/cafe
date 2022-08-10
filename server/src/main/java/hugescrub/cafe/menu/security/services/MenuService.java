@@ -30,6 +30,7 @@ public class MenuService {
         menu.setAvailableFrom(menuDto.getAvailableFrom());
         menu.setAvailableUntil(menuDto.getAvailableUntil());
         menu.setActive(true);
+        menu.setImage(menuDto.getImage());
         menuRepository.save(menu);
         log.info("New menu added.\n" + menu);
     }
@@ -42,6 +43,7 @@ public class MenuService {
         menu.setType(menuDto.getType());
         menu.setAvailableFrom(menuDto.getAvailableFrom());
         menu.setAvailableUntil(menuDto.getAvailableUntil());
+        menu.setImage(menuDto.getImage());
 
         // save updated menu
         menuRepository.save(menu);

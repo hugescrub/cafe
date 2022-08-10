@@ -12,4 +12,6 @@ public class ItemDto {
     private String name;
     private Double price;
     private EItem itemType;
+    private String description;
+    private byte[] image;
 }
