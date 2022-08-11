@@ -27,7 +27,7 @@ export default function App() {
             <a class="link-1" href="/">
               Home
             </a>
-            <a href="/login">Authorize</a>
+            <a href="/authorize">Authorize</a>
             <a href="#">Pricing</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
