@@ -14,12 +14,27 @@ export default function App() {
           <h2>Menu List</h2>
           <div className="underline"></div>
         </div>
-        <Categories
-          categories={categories}
-          activeCategory={activeCategory}
-        />
+        <Categories categories={categories} activeCategory={activeCategory} />
         <Main />
       </section>
+      <footer-section class="footer-distributed">
+        <div class="footer-right">
+          <a href="https://github.com/hugescrub">Github</a>
+        </div>
+
+        <div class="footer-left">
+          <p class="footer-links">
+            <a class="link-1" href="/">
+              Home
+            </a>
+            <a href="/login">Authorize</a>
+            <a href="#">Pricing</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+          </p>
+          <p>Hugescrub &copy; 2022</p>
+        </div>
+      </footer-section>
     </main>
   );
 }

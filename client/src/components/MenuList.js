@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../modal/Modal";
+import Modal from "./modal/Modal";
 
 export default function MenuList({ type }) {
   const ACTIVE_FLAG = "/true";
