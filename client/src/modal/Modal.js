@@ -27,7 +27,7 @@ export default class Modal extends React.Component {
             <div className="modal-body">
               <header>
                 <h1>{title}</h1>
-                <h4 className="price-availability">
+                <h4 className="modal-availability">
                   Between {availableFrom} - {availableUntil}
                 </h4>
                 <span className="close-btn" onClick={() => this.setState({ isOpen: false })}>&times;</span>

@@ -46,7 +46,7 @@ export default function MenuList({ type }) {
               <h4 className="price-availability">
                 Between {availableFrom} - {availableUntil}
               </h4>
-              <p className="item-text">{type}</p>
+              <p className="item-text-main">{type}</p>
               <Modal menu={menu} />
             </div>
           </article>
