@@ -12,3 +12,14 @@ Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD
 **Database dummy data**
 
 **Database init scripts**
+
+## Upcoming Readme additions
+
+Launch guide
+
+Screenshots
+
+More detailed summary
+
+
+
