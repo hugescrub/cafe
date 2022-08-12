@@ -90,5 +90,3 @@ export default function Login() {
     </div>
   );
 }
-
-// <p>{requestFailed ? "Wrong username or password" : "Logged in successfully!"}</p>
