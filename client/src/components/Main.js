@@ -15,8 +15,8 @@ const Main = () => {
     <Routes>
       <Route path="/" element={<MenuList type="ALL" />} />
       <Route path="/menus/:type" element={<MenuList type={searchType} />} />
-      <Route path="/items/:id" element={<Item item />} />
-      <Route path="/authorize" element={<Login />}/> {/* Put actual page component here */}
+      <Route path="/items/:id" element={<Item />} />
+      <Route path="/authorize" element={<Login />}/>
     </Routes>
   );
 };
