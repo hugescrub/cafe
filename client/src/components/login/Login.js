@@ -1,28 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 
 export default function Login() {
   const [Login, setLogin] = useState([]);
+  const [requestFailed, setRequestFailed] = useState(false);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const onUsernameChange = (e) => setUsername(e.target.value);
   const onPasswordChange = (e) => setPassword(e.target.value);
 
-  /*
-  * Use for accessing protected endpoint later
-  * TODO: delete comment
-  * 
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Basic " + btoa(`${username}:${password}`)
-    },
-    body: JSON.stringify(data)
-  };
-  * 
-  */
+  const errorMessage = () => {
+    if(requestFailed){
+      return(
+        <p>{"Wrong username or password"}</p>
+      )
+    }
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -33,12 +27,31 @@ export default function Login() {
       body: JSON.stringify(data),
     };
     fetch("http://localhost:8080/auth/login", requestOptions)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        } else {
+          setRequestFailed(false);
+          return res.json();
+        }
+      })
       .then((res) => {
         console.log(res);
         setLogin(res);
+      })
+      .catch((error) => {
+        console.log("error: " + error);
+        setRequestFailed(true);
       });
   };
+
+  const persistData = () => {
+    localStorage.getItem('data');
+  }
+
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(btoa(`${username}:${password}`)));
+  }, [requestFailed, persistData]);
 
   return (
     <div className="body">
@@ -49,6 +62,7 @@ export default function Login() {
         <div className="form">
           <form>
             <input
+              name="username"
               type="text"
               placeholder="Username"
               className="text"
@@ -58,6 +72,7 @@ export default function Login() {
               required
             />
             <input
+              name="password"
               type="password"
               placeholder="••••••••••••••"
               className="password"
@@ -68,9 +83,12 @@ export default function Login() {
             <button className="btn-login" id="do-login" onClick={handleLogin}>
               Login
             </button>
+            {errorMessage()}
           </form>
         </div>
       </section>
     </div>
   );
 }
+
+// <p>{requestFailed ? "Wrong username or password" : "Logged in successfully!"}</p>
