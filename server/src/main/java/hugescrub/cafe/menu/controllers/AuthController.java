@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -58,11 +59,11 @@ public class AuthController {
                             userDetails.getUsername(),
                             userDetails.getEmail(),
                             roles));
-        } catch (Exception e) {
+        } catch (AuthenticationException e) {
             log.debug(e.getMessage());
             return ResponseEntity
                     .badRequest()
-                    .body(e.getMessage());
+                    .body(new MessageResponse("Wrong username or password."));
         }
     }
 
