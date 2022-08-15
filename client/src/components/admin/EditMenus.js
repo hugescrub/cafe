@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
-export default function Admin() {
-  const [Admin, setAdmin] = useState([]);
+export default function EditMenus() {
+  const [EditMenus, setEditMenus] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const getData = () => {
@@ -11,11 +11,11 @@ export default function Admin() {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        setAdmin(res);
+        setEditMenus(res);
       });
   };
 
-  const sortNames = [...Admin].sort((a, b) => (a.title > b.title ? 1 : -1));
+  const sortNames = [...EditMenus].sort((a, b) => (a.title > b.title ? 1 : -1));
 
   const renderImage = (image) => {
     return (
