@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Categories from "./Categories";
 import Modal from "./modal/Modal";
+import Footer from "./Footer";
 import logo from "../logo.JPG";
 
 export default function MenuList({ type }) {
@@ -74,6 +75,7 @@ export default function MenuList({ type }) {
           );
         })}
       </div>
+      <Footer />
     </div>
   );
 }
