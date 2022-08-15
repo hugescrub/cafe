@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Footer from "../Footer"
 import "./Login.css";
 
 export default function Login() {
@@ -43,6 +44,7 @@ export default function Login() {
         console.log("error: " + error);
         setRequestFailed(true);
       });
+      localStorage.setItem('data', JSON.stringify(btoa(`${username}:${password}`)));
   };
 
   const persistData = () => {
@@ -50,7 +52,7 @@ export default function Login() {
   }
 
   useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(btoa(`${username}:${password}`)));
+    
   }, [requestFailed, persistData]);
 
   return (
@@ -87,6 +89,9 @@ export default function Login() {
           </form>
         </div>
       </section>
+      <div className="login-footer">
+        <Footer />
+      </div>
     </div>
   );
 }
