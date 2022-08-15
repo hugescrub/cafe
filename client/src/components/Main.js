@@ -3,9 +3,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import MenuList from "./MenuList";
 import Item from "./Item";
-import Login from "./login/Login"
-import Admin from "./admin/Admin"
-import Actions from "./admin/Actions"
+import Login from "./login/Login";
+import EditMenus from "./admin/EditMenus";
+import ManageMenus from "./admin/ManageMenus";
+import ManageDishes from "./admin/ManageDishes";
+import Actions from "./admin/Actions";
+import Validate from "../utils/Validate";
 
 const Main = () => {
   const location = useLocation();
@@ -15,12 +18,20 @@ const Main = () => {
 
   return (
     <Routes>
+      {/*Public routes*/}
       <Route path="/" element={<MenuList type="ALL" />} />
       <Route path="/menus/:type" element={<MenuList type={searchType} />} />
       <Route path="/items/:id" element={<Item item/>} />
       <Route path="/authorize" element={<Login />} />
-      <Route path="/admin" element={localStorage.getItem('data') ? <Admin /> : <Navigate to="/authorize" />} />
-      <Route path="/actions" element={<Actions />} />
+
+      {/*Private routes*/}
+      <Route path="/admin" element={localStorage.getItem('data') ? <Actions /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/menus/edit" 
+             element={localStorage.getItem('data') ? (
+                Validate() ? <EditMenus /> : <Navigate to="/authorize" />
+              ) : <Navigate to="/authorize" />} />
+      <Route path="/admin/menus/manage" element={localStorage.getItem('data') ? <ManageMenus /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/dishes/manage" element={localStorage.getItem('data') ? <ManageDishes /> : <Navigate to="/authorize" />} />
     </Routes>
   );
 };

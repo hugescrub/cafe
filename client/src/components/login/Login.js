@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../Footer"
+import { useNavigate } from "react-router-dom";
+import Footer from "../Footer";
 import "./Login.css";
 
 export default function Login() {
   const [Login, setLogin] = useState([]);
   const [requestFailed, setRequestFailed] = useState(false);
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,12 +14,10 @@ export default function Login() {
   const onPasswordChange = (e) => setPassword(e.target.value);
 
   const errorMessage = () => {
-    if(requestFailed){
-      return(
-        <p>{"Wrong username or password"}</p>
-      )
+    if (requestFailed) {
+      return <p>{"Wrong username or password"}</p>;
     }
-  }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -39,21 +39,25 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         setLogin(res);
+        navigate("/admin");
       })
       .catch((error) => {
         console.log("error: " + error);
         setRequestFailed(true);
       });
-      localStorage.setItem('data', JSON.stringify(btoa(`${username}:${password}`)));
+    localStorage.setItem(
+      "data",
+      JSON.stringify(btoa(`${username}:${password}`))
+    );
   };
 
   const persistData = () => {
-    localStorage.getItem('data');
-  }
+    localStorage.getItem("data");
+  };
 
   useEffect(() => {
-    
-  }, [requestFailed, persistData]);
+    persistData();
+  }, [requestFailed]);
 
   return (
     <div className="body">
@@ -82,9 +86,9 @@ export default function Login() {
               onChange={onPasswordChange}
               required
             />
-            <button className="btn-login" id="do-login" onClick={handleLogin}>
-              Login
-            </button>
+              <button className="btn-login" id="do-login" onClick={handleLogin}>
+                Login
+              </button>
             {errorMessage()}
           </form>
         </div>
