@@ -37,6 +37,10 @@ export default function Login() {
         }
       })
       .then((res) => {
+        localStorage.setItem(
+          "data",
+          btoa(`${username}:${password}`)
+        );
         console.log(res);
         setLogin(res);
         navigate("/admin");
@@ -45,10 +49,6 @@ export default function Login() {
         console.log("error: " + error);
         setRequestFailed(true);
       });
-    localStorage.setItem(
-      "data",
-      JSON.stringify(btoa(`${username}:${password}`))
-    );
   };
 
   const persistData = () => {

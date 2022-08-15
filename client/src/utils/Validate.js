@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Validate = () => {
   const [requestAccepted, setRequestAccepted] = useState(true);
 
-  const decodedData = window.atob(localStorage.getItem("data").slice(1, -1));  
-  const username = decodedData.substring(0, decodedData.indexOf(':'));
-  const password = decodedData.substring(decodedData.indexOf(':') + 1, decodedData.length)
+  var decodedData = window.atob(localStorage.getItem("data"));
+  const username = decodedData.substring(0, decodedData.indexOf(":"));
+  const password = decodedData.substring(
+    decodedData.indexOf(":") + 1,
+    decodedData.length
+  );
 
   const data = { username, password };
 
@@ -24,7 +27,7 @@ const Validate = () => {
       }
     })
     .then((res) => {
-      setRequestAccepted(true)
+      setRequestAccepted(true);
       console.log(res);
     })
     .catch((error) => {
@@ -32,7 +35,7 @@ const Validate = () => {
       console.log("error: " + error);
     });
     console.log(requestAccepted);
-    return requestAccepted;
+  return requestAccepted;
 };
 
 export default Validate;

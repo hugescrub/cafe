@@ -25,13 +25,16 @@ const Main = () => {
       <Route path="/authorize" element={<Login />} />
 
       {/*Private routes*/}
-      <Route path="/admin" element={localStorage.getItem('data') ? <Actions /> : <Navigate to="/authorize" />} />
+      <Route path="/admin" 
+             element={localStorage.getItem("data") ? (
+                Validate() ? <Actions /> : <Navigate to="/authorize" />
+              ) : <Navigate to="/authorize" />} />
       <Route path="/admin/menus/edit" 
-             element={localStorage.getItem('data') ? (
+             element={localStorage.getItem("data") ? (
                 Validate() ? <EditMenus /> : <Navigate to="/authorize" />
               ) : <Navigate to="/authorize" />} />
-      <Route path="/admin/menus/manage" element={localStorage.getItem('data') ? <ManageMenus /> : <Navigate to="/authorize" />} />
-      <Route path="/admin/dishes/manage" element={localStorage.getItem('data') ? <ManageDishes /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/menus/manage" element={localStorage.getItem("data") ? <ManageMenus /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/dishes/manage" element={localStorage.getItem("data") ? <ManageDishes /> : <Navigate to="/authorize" />} />
     </Routes>
   );
 };
