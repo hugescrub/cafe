@@ -1,7 +1,6 @@
   .body {
     margin: 12rem;
-    margin-right: 15rem;
-    margin-left: 15rem;
+    justify-content: center;
     font-family: Assistant, sans-serif;
     display: flex;
     height: 25rem;

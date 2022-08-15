@@ -132,7 +132,7 @@ p::first-letter {
   border-radius: 0.25rem;
 }
 
-footer-section {
+header-section {
   position: fixed;
   top: 0;
   left: 0;
@@ -140,6 +140,91 @@ footer-section {
   display: inline-block;
   background: #ccc;
   height: 5.5rem;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.header-distributed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 28px 50px;
+}
+
+.header-distributed .header-left p {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+
+.header-distributed p.header-links {
+  font-size: 18px;
+  text-transform: capitalize;
+  color: #ffffff;
+  margin: 0 0 10px;
+  transition: ease .25s;
+}
+
+.header-distributed p.header-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease .25s;
+}
+
+.header-distributed .header-links a:before {
+  content: '\00a0 ·';
+  font-size: 15px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.header-distributed .header-links .link-1:before {
+  content: none;
+}
+
+.header-distributed .header-right {
+  float: right;
+  margin-top: 6px;
+  max-width: 180px;
+}
+
+.header-distributed .header-right a {
+  display: inline-block;
+  width: 90px;
+  height: 35px;
+  margin-top: -10px;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 15px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 3px;
+  transition:all .25s;
+  text-decoration: none;
+}
+
+.header-distributed p.header-links a:hover {
+  text-decoration:underline;
+}
+
+footer-section {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 50px;
+  display: inline-block;
+  background: #ccc;
+  height: auto;
   text-align: center;
   font-size: 22px;
   font-weight: 700;
@@ -195,23 +280,6 @@ footer-section {
   float: right;
   margin-top: 6px;
   max-width: 180px;
-}
-
-.footer-distributed .footer-right a {
-  display: inline-block;
-  width: 90px;
-  height: 35px;
-  margin-top: -10px;
-  background-color: #33383b;
-  border-radius: 2px;
-  font-size: 15px;
-  color: #ffffff;
-  text-align: center;
-  line-height: 35px;
-  margin-left: 3px;
-  transition:all .25s;
-  text-decoration: none;
-  font: sans-serif;
 }
 
 .footer-distributed p.footer-links a:hover {
@@ -338,4 +406,157 @@ footer-section {
 
 .menu-section-wrapper {
   margin-top: 2rem;
+}
+
+.admin-photo {
+  height: 40px;
+  width: 100%;
+  border-radius: 0.25rem;
+  display: block;
+}
+
+.admin-photo:hover {
+  height: 100px;
+  width: 100%;
+  border: 0.25rem solid hsl(362, 78%, 62%);
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800|Poppins&display=swap');
+.cards > *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat',sans-serif;
+}
+
+.cards{
+  max-width: 1100px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  text-align: center;
+  padding: 30px;
+}
+
+.cards h2 {
+  margin-bottom: 15px;
+}
+
+.cards h2.header{
+  font-size: 40px;
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cards-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.cards-par {
+  height: 120px;
+  text-transform: none;
+  letter-spacing: 0.7px;
+}
+
+.services{
+  display: flex;
+  align-items: center;
+}
+
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 4px;
+  transition: all .3s ease;
+}
+
+.content p{
+  color: black;
+}
+
+.content p:hover{
+  color: white;
+}
+
+.content > *{
+  flex: 1 1 100%;
+}
+
+.content:hover{
+  color: white;
+}
+
+.content:hover a{
+  border-color: white;
+  background: white;
+}
+
+.content-1:hover{
+  border-color: #333;
+  background: #333;
+}
+.content-1:hover p{
+  color: white;
+}
+.content-1:hover a{
+  color: #333;
+}
+.content-2:hover{
+  border-color: #333;
+  background: #333;
+}
+.content-2:hover p{
+  color: white;
+}
+.content-2:hover a{
+  color: #333;
+}
+.content-3:hover{
+  border-color: #333;
+  background: #333;
+}
+.content-3:hover p{
+  color: white;
+}
+.content-3:hover a{
+  color: #333;
+}
+.content h2{
+  font-size: 25px;
+  margin: 16px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.content p{
+  font-size: 17px;
+  font-family: 'Poppins',sans-serif;
+}
+.content a{
+  margin: 22px 0;
+  background: black;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid black;
+  padding: 15px 0;
+  border-radius: 25px;
+  transition: .3s ease;
+}
+.content a:hover{
+  border-radius: 4px;
+}
+@media (max-width: 900px) {
+  .services{
+    display: flex;
+    flex-direction: column;
+  }
 }
