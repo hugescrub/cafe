@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Footer from "./Footer";
-import "./item.css";
+import Footer from "../Footer";
 
 export default function Item() {
   const [Item, setItem] = useState([]);

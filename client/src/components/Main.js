@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import MenuList from "./MenuList";
-import Item from "./Item";
+import MenuList from "./menu/MenuList";
+import Item from "./item/Item";
 import Login from "./login/Login";
 import EditMenus from "./admin/EditMenus";
 import ManageMenus from "./admin/ManageMenus";
