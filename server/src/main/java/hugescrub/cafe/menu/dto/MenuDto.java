@@ -11,9 +11,9 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MenuDto {
-    private EType type;
     private String title;
     private LocalTime availableFrom;
     private LocalTime availableUntil;
+    private EType type;
     private byte[] image;
 }

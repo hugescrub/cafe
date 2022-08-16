@@ -44,7 +44,7 @@ public class MenuController {
     }
 
     @GetMapping("/{title}")
-    public ResponseEntity<?> getMenusByTitle(@PathVariable String title) {
+    public ResponseEntity<?> getMenuByTitle(@PathVariable String title) {
         if (menuRepository.existsByTitle(title)) {
             Menu menu = menuRepository.findByTitle(title);
             log.info("Requested menu info with title: " + title);
