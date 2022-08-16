@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import Sidebar from "../../utils/Sidebar";
 import Footer from "../Footer";
 import EditMenuModal from "./EditMenuModal";
 
@@ -43,21 +44,7 @@ export default function EditMenus() {
 
   return (
     <div>
-      <div id="wrapper">
-        <div id="sidebar-wrapper">
-          <ul class="sidebar-nav" id="menu">
-            <li>
-              <a href="/admin/menus/edit">Edit menus</a>
-            </li>
-            <li>
-              <a href="/admin/menus/manage">Manage menus</a>
-            </li>
-            <li>
-              <a href="/admin/dishes/manage">Manage dishes</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <Sidebar />
       <div className="table-container">
         <table className="table" id="table">
           <thead>
