@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import Footer from "../Footer";
+import EditMenuModal from "./EditMenuModal";
 
 export default function EditMenus() {
   const [EditMenus, setEditMenus] = useState([]);
@@ -41,7 +43,22 @@ export default function EditMenus() {
 
   return (
     <div>
-      <div>
+      <div id="wrapper">
+        <div id="sidebar-wrapper">
+          <ul class="sidebar-nav" id="menu">
+            <li>
+              <a href="/admin/menus/edit">Edit menus</a>
+            </li>
+            <li>
+              <a href="/admin/menus/manage">Manage menus</a>
+            </li>
+            <li>
+              <a href="/admin/dishes/manage">Manage dishes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="table-container">
         <table className="table" id="table">
           <thead>
             <tr>
@@ -49,6 +66,7 @@ export default function EditMenus() {
               <th>Type</th>
               <th>Availability</th>
               <th>Image</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -60,12 +78,20 @@ export default function EditMenus() {
                   <td>{title}</td>
                   <td>{type}</td>
                   <td>{availableFrom + " - " + availableUntil}</td>
-                  <td>{image != null ? renderImage(image) : "No image"}</td>
+                  <td className="table-image">
+                    {image != null ? renderImage(image) : "No image"}
+                  </td>
+                  <td>
+                    <EditMenuModal menu={menu}/>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+      </div>
+      <div class="shared-footer">
+        <Footer />
       </div>
     </div>
   );
