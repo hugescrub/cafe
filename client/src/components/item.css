@@ -1,7 +1,7 @@
 .item-page{
   max-width: 1200px;
   width: 100%;
-  margin: 100px auto;
+  margin: 200px auto;
   box-shadow: 0 0 5px #ccc;
 }
 
@@ -96,6 +96,7 @@
 }
 
 .box .return{
+  font-weight: bold;
   background: #333;
   color: white;
   outline: none;
