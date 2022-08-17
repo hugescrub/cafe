@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Lightbox from "react-image-lightbox";
+import { Link } from "react-router-dom";
 import "react-image-lightbox/style.css";
 import Sidebar from "../../utils/Sidebar";
 import Footer from "../Footer";
-import EditMenuModal from "./EditMenuModal";
 
 export default function EditMenus() {
   const [EditMenus, setEditMenus] = useState([]);
@@ -69,7 +69,9 @@ export default function EditMenus() {
                     {image != null ? renderImage(image) : "No image"}
                   </td>
                   <td>
-                    <EditMenuModal menu={menu}/>
+                    <Link to={"/admin/edit/" + title} >
+                      <button className="button">Edit</button>
+                    </Link>
                   </td>
                 </tr>
               );
