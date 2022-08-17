@@ -9,12 +9,16 @@ import ManageMenus from "./admin/ManageMenus";
 import ManageDishes from "./admin/ManageDishes";
 import Actions from "./admin/Actions";
 import Validate from "../utils/Validate";
+import EditMenuForm from "./admin/EditMenuForm";
 
 const Main = () => {
   const location = useLocation();
   const searchType = useLocation()
     .pathname.substring(location.pathname.lastIndexOf("/") + 1)
     .toUpperCase();
+
+  const editTitle = useLocation()
+  .pathname.substring(location.pathname.lastIndexOf("/") + 1).replace("%20", " ")
 
   return (
     <Routes>
@@ -33,8 +37,13 @@ const Main = () => {
              element={localStorage.getItem("data") ? (
                 Validate() ? <EditMenus /> : <Navigate to="/authorize" />
               ) : <Navigate to="/authorize" />} />
+              
       <Route path="/admin/menus/manage" element={localStorage.getItem("data") ? <ManageMenus /> : <Navigate to="/authorize" />} />
       <Route path="/admin/dishes/manage" element={localStorage.getItem("data") ? <ManageDishes /> : <Navigate to="/authorize" />} />
+
+      <Route path="/admin/edit/:title" element={localStorage.getItem("data") ? (
+                Validate() ? <EditMenuForm title={editTitle}/>: <Navigate to="/authorize" />
+              ) : <Navigate to="/authorize" />} />
     </Routes>
   );
 };
