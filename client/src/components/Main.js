@@ -40,7 +40,7 @@ const Main = () => {
               ) : <Navigate to="/authorize" />} />
               
       <Route path="/admin/menus/manage" element={localStorage.getItem("data") ? <ManageMenus /> : <Navigate to="/authorize" />} />
-      <Route path="/admin/menus/:title/additem" element={<AddItemForm title={editTitle} />} />
+      <Route path="/admin/menu/additem/:title" element={<AddItemForm title={editTitle} />} />
       <Route path="/admin/dishes/manage" element={localStorage.getItem("data") ? <ManageDishes /> : <Navigate to="/authorize" />} />
 
       <Route path="/admin/edit/:title" element={localStorage.getItem("data") ? (

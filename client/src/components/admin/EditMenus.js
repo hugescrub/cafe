@@ -72,7 +72,7 @@ export default function EditMenus() {
                     <Link to={"/admin/edit/" + title} >
                       <button className="button">Edit</button>
                     </Link>
-                    <Link to ={"/admin/menus/" + title + "/additem"}>
+                    <Link to ={"/admin/menu/additem/" + title}>
                       <button className="button">Add dishes</button>
                     </Link>
                   </td>
