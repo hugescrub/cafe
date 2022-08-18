@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
 const EditMenuForm = ({ title }) => {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const [availableFrom, setAvailableFrom] = useState("");
   const [availableUntil, setAvailableUntil] = useState("");
+  const [requestAccepted, setRequestAccepted] = useState(true);
   const [type, setType] = useState("");
   const [image, setImage] = useState("");
 
@@ -21,7 +22,6 @@ const EditMenuForm = ({ title }) => {
   ];
 
   const handleEdit = (e) => {
-    console.log("Type: " + type);
     e.preventDefault();
     const data = { title, availableFrom, availableUntil, type, image };
     const requestOptions = {
@@ -37,14 +37,16 @@ const EditMenuForm = ({ title }) => {
         if (!res.ok) {
           throw new Error(res.status);
         } else {
+          setRequestAccepted(true);
+          navigate(-1)
           return res.json();
         }
       })
       .then((res) => {
         console.log(res);
-        navigate("/admin/menus/edit");
       })
       .catch((error) => {
+        setRequestAccepted(false);
         console.log("error: " + error);
       });
   };
@@ -61,7 +63,7 @@ const EditMenuForm = ({ title }) => {
     const file = e.target.files[0];
     const base64 = await convertToString(file);
     console.log(base64);
-    setImage(base64.replace("data:image/jpeg;base64,", ""));
+    setImage(base64.substr(base64.indexOf(",") + 1));
   };
 
   const convertToString = (file) => {
@@ -78,17 +80,21 @@ const EditMenuForm = ({ title }) => {
       };
     });
   };
-
+  
   useEffect(() => {}, [type]);
 
   return (
     <div className="selector-wrapper">
-      <section className="selector">
+      <section className="edit-form-p">
         <div>
           <form>
+            <h1>{title}</h1>
+            <h6>Time from</h6>
             <input
               name="availableFrom"
-              type="text"
+              type="time"
+              min="08:00 AM"
+              max="10:00 PM"
               placeholder="From (i.e. 08:00)"
               className="text"
               id="availableFrom"
@@ -96,9 +102,12 @@ const EditMenuForm = ({ title }) => {
               onChange={onAvailableFromChange}
               required
             />
+            <h6>Time until</h6>
             <input
               name="availableUntil"
-              type="text"
+              type="time"
+              min="08:00"
+              max="22:00"
               placeholder="Until (i.e. 12:00)"
               className="text"
               id="availableUntil"
@@ -106,18 +115,23 @@ const EditMenuForm = ({ title }) => {
               onChange={onAvailableUntilChange}
               required
             />
-            <CreatableSelect
-              isClearable
-              onChange={handleChange}
-              options={options}
-            />
-            <input
-              type="file"
-              onChange={(e) => {
-                uploadImage(e);
-              }}
-            ></input>
-            <button onClick={handleEdit}>Submit</button>
+            <h6>Type</h6>
+            <Select onChange={handleChange} options={options} />
+            
+              <input
+                className="inputfile"
+                name="file"
+                id="file"
+                type="file"
+                accept="image/png, image/jpg, image/gif, image/jpeg"
+                onChange={(e) => {
+                  uploadImage(e);
+                }}
+              />
+            <label for="file">Upload image
+            </label>
+            <button className="button-edit" onClick={handleEdit}>Submit</button>
+            {requestAccepted ? <></> : <p>Please, fill out the fields.</p>}
           </form>
         </div>
       </section>

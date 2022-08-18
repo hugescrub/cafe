@@ -312,6 +312,24 @@ footer-section {
   transition: background-color .17s ease, color .17s ease;
 }
 
+.button-edit {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 17px;
+  line-height: 16px;
+  padding: 2px 16px;
+  height: 35px;
+  width: 100%;
+  min-width: 51px;
+  min-height: 23px;
+  border: none;
+  color: #fff;
+  background-color: green;
+  transition: background-color .17s ease, color .17s ease;
+}
+
 .close-btn {
   left: 390px;
   cursor: pointer;
@@ -418,6 +436,10 @@ footer-section {
 
 .table th{
   padding: 12px 15px;
+}
+
+.image-th {
+  width: 250px;
 }
 
 .table-image {
@@ -699,17 +721,95 @@ footer-section {
   justify-content: center;
 }
 
-.selector {
-  display: flex;
-  color: black;
-  height: 300px;
-  width: fit-content;
+.edit-form-p{
+	font: 95% Arial, Helvetica, sans-serif;
+	min-width: 200px;
+  width: 400px;
+	margin: 20px auto;
+	padding: 16px;
+	background: white;
+  border-radius: 10px;
   box-shadow:
     0px 2px 10px rgba(0, 0, 0, 0.2),
     0px 10px 20px rgba(0, 0, 0, 0.3),
     0px 30px 60px 1px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  padding: 50px;
+}
+.edit-form-p h1{
+	background: #333;
+	padding: 20px 0;
+	font-size: 140%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin: -16px -16px 16px -16px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.edit-form-p h6{
+  padding: 0;
+  margin: 0;
+	text-align: left;
+  color: #4f545c;
+}
+.edit-form-p input[type="text"],
+.edit-form-p input[type="date"],
+.edit-form-p input[type="datetime"],
+.edit-form-p input[type="email"],
+.edit-form-p input[type="number"],
+.edit-form-p input[type="search"],
+.edit-form-p input[type="time"],
+.edit-form-p input[type="url"],
+.edit-form-p textarea,
+.edit-form-p select 
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+.edit-form-p input[type="text"]:focus,
+.edit-form-p input[type="date"]:focus,
+.edit-form-p input[type="datetime"]:focus,
+.edit-form-p input[type="email"]:focus,
+.edit-form-p input[type="number"]:focus,
+.edit-form-p input[type="search"]:focus,
+.edit-form-p input[type="time"]:focus,
+.edit-form-p input[type="url"]:focus,
+.edit-form-p textarea:focus,
+.edit-form-p select:focus
+{
+	box-shadow: 0 0 5px #333;
+	padding: 3%;
+	border: 1px solid #333;
+}
+
+.edit-form-p input[type="submit"],
+.edit-form-p input[type="button"]{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 3%;
+	background: #333;
+	border-bottom: 2px solid #333;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff;
+}
+.edit-form-p input[type="submit"]:hover,
+.edit-form-p input[type="button"]:hover{
+	background: #333;
 }
 
 .login {
@@ -956,4 +1056,37 @@ footer-section {
 .modal-availability {
   margin-top: 23px;
   color: #c59d5f;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+label {
+  font: 95% Arial, Helvetica, sans-serif;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background-color: #333;
+  background: #333;
+	font-size: 110%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+}
+
+label:hover, label:active, input:hover+label, input:active+label {
+  background:white;
+  color: #000;
 }
