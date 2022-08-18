@@ -52,7 +52,7 @@ export default function EditMenus() {
               <th>Title</th>
               <th>Type</th>
               <th>Availability</th>
-              <th>Image</th>
+              <th className="image-th">Image (click to open fullsize)</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -71,6 +71,9 @@ export default function EditMenus() {
                   <td>
                     <Link to={"/admin/edit/" + title} >
                       <button className="button">Edit</button>
+                    </Link>
+                    <Link to ={"/admin/menus/" + title + "/additem"}>
+                      <button className="button">Add dishes</button>
                     </Link>
                   </td>
                 </tr>

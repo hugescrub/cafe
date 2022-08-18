@@ -10,6 +10,7 @@ import ManageDishes from "./admin/ManageDishes";
 import Actions from "./admin/Actions";
 import Validate from "../utils/Validate";
 import EditMenuForm from "./admin/EditMenuForm";
+import AddItemForm from "./admin/AddItemForm";
 
 const Main = () => {
   const location = useLocation();
@@ -18,7 +19,7 @@ const Main = () => {
     .toUpperCase();
 
   const editTitle = useLocation()
-  .pathname.substring(location.pathname.lastIndexOf("/") + 1).replace("%20", " ")
+    .pathname.substring(location.pathname.lastIndexOf("/") + 1).replace("%20", " ")
 
   return (
     <Routes>
@@ -39,6 +40,7 @@ const Main = () => {
               ) : <Navigate to="/authorize" />} />
               
       <Route path="/admin/menus/manage" element={localStorage.getItem("data") ? <ManageMenus /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/menus/:title/additem" element={<AddItemForm title={editTitle} />} />
       <Route path="/admin/dishes/manage" element={localStorage.getItem("data") ? <ManageDishes /> : <Navigate to="/authorize" />} />
 
       <Route path="/admin/edit/:title" element={localStorage.getItem("data") ? (
