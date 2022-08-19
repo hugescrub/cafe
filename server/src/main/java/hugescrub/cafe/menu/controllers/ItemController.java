@@ -3,14 +3,17 @@ package hugescrub.cafe.menu.controllers;
 import hugescrub.cafe.menu.dto.ItemDto;
 import hugescrub.cafe.menu.models.EItem;
 import hugescrub.cafe.menu.models.Item;
+import hugescrub.cafe.menu.models.Menu;
 import hugescrub.cafe.menu.payload.response.MessageResponse;
 import hugescrub.cafe.menu.repository.ItemRepository;
+import hugescrub.cafe.menu.repository.MenuRepository;
 import hugescrub.cafe.menu.security.services.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Slf4j
@@ -20,17 +23,41 @@ import java.util.List;
 public class ItemController {
     private final ItemRepository itemRepository;
 
+    private final MenuRepository menuRepository;
+
     private final ItemService itemService;
 
     @Autowired
-    public ItemController(ItemRepository itemRepository, ItemService itemService) {
+    public ItemController(ItemRepository itemRepository, ItemService itemService, MenuRepository menuRepository) {
         this.itemRepository = itemRepository;
         this.itemService = itemService;
+        this.menuRepository = menuRepository;
     }
 
     @GetMapping("/all")
     public List<Item> getItems() {
         return itemRepository.findAll();
+    }
+
+    @GetMapping("/pending")
+    public ResponseEntity<?> getNotAddedItems(@RequestParam(value = "menuTitle") String menuTitle) {
+        if (menuRepository.existsByTitle(menuTitle)) {
+            Menu menu = menuRepository.findByTitle(menuTitle);
+            // get menu items
+            List<Item> menuItems = menu.getItems();
+            // get all items list, remove matching items and return new list
+            List<Item> itemList = itemRepository.findAll();
+            log.info("Initial item list" + itemList);
+            boolean removeAll = itemList.removeAll(menuItems);
+            log.warn("The result of removal is:" + removeAll + "\nPending items: " + itemList);
+            return ResponseEntity
+                    .ok()
+                    .body(itemList);
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Unable to send request: menu title not found."));
+        }
     }
 
     @GetMapping
