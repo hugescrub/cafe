@@ -330,40 +330,32 @@ footer-section {
   transition: background-color .17s ease, color .17s ease;
 }
 
+.button-edit-multi {
+  display: inline-block;
+  position: relative;
+  margin-top: 15px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 17px;
+  line-height: 16px;
+  padding: 2px 16px;
+  height: 35px;
+  width: 100%;
+  min-width: 51px;
+  min-height: 23px;
+  border: none;
+  color: #fff;
+  background-color: green;
+  transition: background-color .17s ease, color .17s ease;
+}
+
 .close-btn {
   left: 390px;
   cursor: pointer;
   font-size: 35px;
   font-weight: lighter;
   color: #000;
-}
-
-.editMenu-close-btn {
-  position: fixed;
-  top: 130px;
-  left: 1100px;
-  cursor: pointer;
-  font-size: 35px;
-  font-weight: lighter;
-  color: #000;
-}
-
-.edit-btn {
-  display: inline-block;
-  outline: none;
-  cursor: pointer;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  padding: 2px 16px;
-  height: 23px;
-  min-width: 51px;
-  min-height: 23px;
-  border: none;
-  color: #fff;
-  background-color: #4f545c;
-  transition: background-color .17s ease, color .17s ease;
 }
 
 .btn-container {
@@ -788,7 +780,6 @@ footer-section {
 .edit-form-p textarea:focus,
 .edit-form-p select:focus
 {
-	box-shadow: 0 0 5px #333;
 	padding: 3%;
 	border: 1px solid #333;
 }
@@ -1089,4 +1080,15 @@ label {
 label:hover, label:active, input:hover+label, input:active+label {
   background:white;
   color: #000;
+}
+
+.space {
+  width: 8px;
+  height: auto;
+  display: inline-block;
+}
+
+.actions-td {
+  width: 12rem;
+  overflow: hidden;
 }

@@ -68,10 +68,11 @@ export default function EditMenus() {
                   <td className="table-image">
                     {image != null ? renderImage(image) : "No image"}
                   </td>
-                  <td>
+                  <td className="actions-td">
                     <Link to={"/admin/edit/" + title} >
                       <button className="button">Edit</button>
                     </Link>
+                    <div className="space"/>
                     <Link to ={"/admin/menu/additem/" + title}>
                       <button className="button">Add dishes</button>
                     </Link>
