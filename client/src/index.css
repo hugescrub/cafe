@@ -452,9 +452,7 @@ footer-section {
     border-bottom: 1px solid #dddddd;
 }
 
-.table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
+
 
 .table tbody tr:last-of-type {
     border-bottom: 2px solid #4f545c;
@@ -1089,6 +1087,14 @@ label:hover, label:active, input:hover+label, input:active+label {
 }
 
 .actions-td {
-  width: 12rem;
+  width: 23rem;
   overflow: hidden;
+}
+
+.active-menu {
+  background-color: rgba(0, 255, 0, 0.12)
+}
+
+.inactive-menu {
+  background-color:rgba(255, 0, 0, 0.12)
 }

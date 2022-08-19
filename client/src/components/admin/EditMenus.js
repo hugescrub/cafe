@@ -8,6 +8,7 @@ import Footer from "../Footer";
 export default function EditMenus() {
   const [EditMenus, setEditMenus] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [archiveTriggered, setArchiveTriggered] = useState(false);
 
   const getData = () => {
     fetch("http://localhost:8080/menu/all")
@@ -38,9 +39,36 @@ export default function EditMenus() {
     );
   };
 
+  const archiveAction = (action, title) => {
+    const requestOptions = {
+      method: "PATCH",
+      headers: {
+        Authorization: "Basic " + localStorage.getItem("data"),
+      },
+    };
+
+    fetch("http://localhost:8080/menu/" + action + "/" + title, requestOptions)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        } else {
+          return res.json();
+        }
+      })
+      .then((res) => {
+        archiveTriggered
+          ? setArchiveTriggered(false)
+          : setArchiveTriggered(true);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log("error: " + error);
+      });
+  };
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [archiveTriggered]);
 
   return (
     <div>
@@ -58,10 +86,20 @@ export default function EditMenus() {
           </thead>
           <tbody>
             {sortNames.map((menu) => {
-              const { id, type, title, availableFrom, availableUntil, image } =
-                menu;
+              const {
+                id,
+                type,
+                title,
+                availableFrom,
+                availableUntil,
+                image,
+                active,
+              } = menu;
               return (
-                <tr key={title}>
+                <tr
+                  key={title}
+                  className={active ? "active-menu" : "inactive-menu"}
+                >
                   <td>{title}</td>
                   <td>{type}</td>
                   <td>{availableFrom + " - " + availableUntil}</td>
@@ -69,13 +107,27 @@ export default function EditMenus() {
                     {image != null ? renderImage(image) : "No image"}
                   </td>
                   <td className="actions-td">
-                    <Link to={"/admin/edit/" + title} >
+                    <Link to={"/admin/edit/" + title}>
                       <button className="button">Edit</button>
                     </Link>
-                    <div className="space"/>
-                    <Link to ={"/admin/menu/additem/" + title}>
+                    <div className="space" />
+                    <Link to={"/admin/menu/additem/" + title}>
                       <button className="button">Add dishes</button>
                     </Link>
+                    <div className="space" />
+                    <button
+                      className="button"
+                      onClick={() => archiveAction("archive", title)}
+                    >
+                      Archive
+                    </button>
+                    <div className="space" />
+                    <button
+                      className="button"
+                      onClick={() => archiveAction("unarchive", title)}
+                    >
+                      Unarchive
+                    </button>
                   </td>
                 </tr>
               );
