@@ -2,6 +2,7 @@ package hugescrub.cafe.menu.controllers;
 
 import hugescrub.cafe.menu.dto.MenuDto;
 import hugescrub.cafe.menu.models.EType;
+import hugescrub.cafe.menu.models.Item;
 import hugescrub.cafe.menu.models.Menu;
 import hugescrub.cafe.menu.payload.request.AddItemRequest;
 import hugescrub.cafe.menu.payload.response.MenuUpdateResponse;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalTime;
 import java.util.List;
 
@@ -60,6 +62,7 @@ public class MenuController {
 
     /**
      * Getting only those menus available between specific time (Ex. 08:00, 10:00 etc).
+     *
      * @param menuDto request DTO.
      * @return returns list for all corresponding entries.
      */
@@ -80,12 +83,12 @@ public class MenuController {
     }
 
     @GetMapping("/active/{active_flag}")
-    public List<Menu> getByActiveFlag(@PathVariable Boolean active_flag){
+    public List<Menu> getByActiveFlag(@PathVariable Boolean active_flag) {
         return menuRepository.findAllByIsActive(active_flag);
     }
 
     @GetMapping
-    public List<Menu> getAllByType(@RequestParam(value = "type") EType type){
+    public List<Menu> getAllByType(@RequestParam(value = "type") EType type) {
         return menuRepository.findAllByType(type);
     }
 
@@ -148,6 +151,22 @@ public class MenuController {
                         .body(new MessageResponse("Declined: the item is already added to the menu."));
             }
         } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Unable to add item to menu: either menu title or item name doesn't exist."));
+        }
+    }
+
+    @PatchMapping("/addItemList/{menuTitle}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    public ResponseEntity<?> addItemListToMenu(@PathVariable String menuTitle, @RequestBody List<Item> itemList) {
+        if (menuRepository.existsByTitle(menuTitle)) {
+            menuService.addItemList(itemList, menuTitle);
+            return ResponseEntity
+                    .ok()
+                    .body(new MessageResponse("Item list added to the menu successfully."));
+        } else {
+            log.warn("Failed to add an item list to the menu.");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Unable to add item to menu: either menu title or item name doesn't exist."));

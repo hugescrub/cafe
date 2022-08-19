@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class MenuService {
@@ -60,5 +62,13 @@ public class MenuService {
         menuRepository.save(menu);
         log.info("An item with id: '" + item.getId() +
                 "'. Was successfully added to the menu with id: '" + menu.getId() + "'.");
+    }
+
+    public void addItemList(List<Item> itemList, String menuTitle) {
+        Menu menu = menuRepository.findByTitle(menuTitle);
+        List<Item> menuItems = menu.getItems();
+        boolean addAll = menuItems.addAll(itemList);
+        menuRepository.save(menu);
+        log.info("Item list was successfully added to menu: " + menuTitle);
     }
 }
