@@ -1081,13 +1081,13 @@ label:hover, label:active, input:hover+label, input:active+label {
 }
 
 .space {
-  width: 8px;
+  width: 10px;
   height: auto;
   display: inline-block;
 }
 
 .actions-td {
-  width: 23rem;
+  width: 19rem;
   overflow: hidden;
 }
 
