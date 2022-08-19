@@ -88,8 +88,8 @@ public class MenuController {
     }
 
     @GetMapping
-    public List<Menu> getAllByType(@RequestParam(value = "type") EType type) {
-        return menuRepository.findAllByType(type);
+    public List<Menu> getAllActiveByType(@RequestParam(value = "type") EType type) {
+        return menuRepository.findAllByIsActiveAndType(true, type);
     }
 
     @PostMapping("/add")
@@ -191,6 +191,27 @@ public class MenuController {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Unable to archive menu: title doesn't exist."));
+        }
+    }
+
+    @PatchMapping("/unarchive/{menuTitle}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    public ResponseEntity<?> unarchiveMenu(@PathVariable String menuTitle) {
+        if (menuRepository.existsByTitle(menuTitle)) {
+            // get menu object and set ACTIVE flag to true
+            Menu menu = menuRepository.findByTitle(menuTitle);
+            menu.setActive(true);
+
+            // save updated menu
+            menuRepository.save(menu);
+            log.info("Successfully unarchived menu with id: " + menu.getId());
+            return ResponseEntity
+                    .ok()
+                    .body(new MessageResponse("Successfully unarchived menu: '" + menuTitle + "'."));
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Unable to unarchive menu: title doesn't exist."));
         }
     }
 }
