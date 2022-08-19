@@ -45,7 +45,7 @@ export default function EditMenus() {
       headers: {
         Authorization: "Basic " + localStorage.getItem("data"),
       },
-    };
+    };  
 
     fetch("http://localhost:8080/menu/" + action + "/" + title, requestOptions)
       .then((res) => {
@@ -64,6 +64,30 @@ export default function EditMenus() {
       .catch((error) => {
         console.log("error: " + error);
       });
+  };
+
+  const archiveButton = (active, title) => {
+    if (active) {
+      return (
+        <button
+          style={{ backgroundColor: "rgba(149, 11, 11, 1)" , width: "97px"}}
+          className="button"
+          onClick={() => archiveAction("archive", title)}
+        >
+          Archive
+        </button>
+      );
+    } else {
+      return (
+        <button
+          style={{ backgroundColor: "rgba(11, 149, 11, 1)" }}
+          className="button"
+          onClick={() => archiveAction("unarchive", title)}
+        >
+          Unarchive
+        </button>
+      );
+    }
   };
 
   useEffect(() => {
@@ -109,35 +133,28 @@ export default function EditMenus() {
                   <td className="actions-td">
                     <Link to={"/admin/edit/" + title}>
                       <button
-                      style={{backgroundColor: "rgba(0, 89, 255, 0.76)"}}
-                      className="button">Edit</button>
+                        style={{ backgroundColor: "rgba(0, 89, 255, 0.76)" }}
+                        className="button"
+                      >
+                        Edit
+                      </button>
                     </Link>
                     <div className="space" />
                     <Link to={"/admin/menu/additem/" + title}>
                       <button
-                      style={{backgroundColor: "rgba(155, 162, 46, 1)"}}
-                      className="button">Add dishes</button>
+                        style={{ backgroundColor: "rgba(155, 162, 46, 1)" }}
+                        className="button"
+                      >
+                        Add dishes
+                      </button>
                     </Link>
                     <div className="space" />
-                    <button
-                      style={{backgroundColor: "rgba(149, 11, 11, 1)"}}
-                      className="button"
-                      onClick={() => archiveAction("archive", title)}
-                    >
-                      Archive
-                    </button>
-                    <div className="space" />
-                    <button
-                      style={{backgroundColor: "rgba(11, 149, 11, 1)"}}
-                      className="button"
-                      onClick={() => archiveAction("unarchive", title)}
-                    >
-                      Unarchive
-                    </button>
+                    {archiveButton(active, title)}
                   </td>
                 </tr>
               );
             })}
+            
           </tbody>
         </table>
       </div>
