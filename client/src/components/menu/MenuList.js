@@ -5,6 +5,7 @@ import Footer from "../Footer";
 import logo from "../../logo.JPG";
 
 export default function MenuList({ type }) {
+  // use active for deploy version
   const ACTIVE_FLAG = "/true";
   const INACTIVE_FLAG = "/false";
 
@@ -22,7 +23,7 @@ export default function MenuList({ type }) {
   };
 
   const getData = () => {
-    fetch("http://localhost:8080/menu/active" + INACTIVE_FLAG)
+    fetch("http://localhost:8080/menu/active" + ACTIVE_FLAG)
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
