@@ -108,14 +108,19 @@ export default function EditMenus() {
                   </td>
                   <td className="actions-td">
                     <Link to={"/admin/edit/" + title}>
-                      <button className="button">Edit</button>
+                      <button
+                      style={{backgroundColor: "rgba(0, 89, 255, 0.76)"}}
+                      className="button">Edit</button>
                     </Link>
                     <div className="space" />
                     <Link to={"/admin/menu/additem/" + title}>
-                      <button className="button">Add dishes</button>
+                      <button
+                      style={{backgroundColor: "rgba(155, 162, 46, 1)"}}
+                      className="button">Add dishes</button>
                     </Link>
                     <div className="space" />
                     <button
+                      style={{backgroundColor: "rgba(149, 11, 11, 1)"}}
                       className="button"
                       onClick={() => archiveAction("archive", title)}
                     >
@@ -123,6 +128,7 @@ export default function EditMenus() {
                     </button>
                     <div className="space" />
                     <button
+                      style={{backgroundColor: "rgba(11, 149, 11, 1)"}}
                       className="button"
                       onClick={() => archiveAction("unarchive", title)}
                     >
