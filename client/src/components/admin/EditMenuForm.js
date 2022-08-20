@@ -86,7 +86,7 @@ const EditMenuForm = ({ title }) => {
   useEffect(() => {}, [type]);
 
   return (
-    <div>
+    <div style={{marginLeft: "-250px"}}>
       <div className="selector-wrapper">
         <Sidebar />
         <section className="edit-form-p">

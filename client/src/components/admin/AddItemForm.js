@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import Sidebar from "../../utils/Sidebar";
+import Footer from "../Footer";
 
 const AddItemForm = ({ title }) => {
   const [items, setItems] = useState([]);
@@ -72,6 +74,7 @@ const AddItemForm = ({ title }) => {
 
   return (
     <div>
+      <Sidebar />
       <div className="selector-wrapper">
         <section className="edit-form-p">
           <div>
@@ -99,6 +102,9 @@ const AddItemForm = ({ title }) => {
             </form>
           </div>
         </section>
+      </div>
+      <div className="addForm-footer">
+        <Footer />
       </div>
     </div>
   );

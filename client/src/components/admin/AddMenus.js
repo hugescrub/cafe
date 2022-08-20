@@ -86,7 +86,7 @@ export default function AddMenus() {
   };
 
   return (
-    <div className="addForm-centered">
+    <div style={{marginTop: "-30px"}}>
       <Sidebar />
       <div className="selector-wrapper">
         <section className="edit-form-p">
