@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../../utils/Sidebar";
+import Footer from "../Footer";
 
 const EditMenuForm = ({ title }) => {
   let navigate = useNavigate();
@@ -38,7 +40,7 @@ const EditMenuForm = ({ title }) => {
           throw new Error(res.status);
         } else {
           setRequestAccepted(true);
-          navigate(-1)
+          navigate(-1);
           return res.json();
         }
       })
@@ -80,44 +82,46 @@ const EditMenuForm = ({ title }) => {
       };
     });
   };
-  
+
   useEffect(() => {}, [type]);
 
   return (
-    <div className="selector-wrapper">
-      <section className="edit-form-p">
-        <div>
-          <form>
-            <h1>{title}</h1>
-            <h6>Time from</h6>
-            <input
-              name="availableFrom"
-              type="time"
-              min="08:00 AM"
-              max="10:00 PM"
-              placeholder="From (i.e. 08:00)"
-              className="text"
-              id="availableFrom"
-              value={availableFrom}
-              onChange={onAvailableFromChange}
-              required
-            />
-            <h6>Time until</h6>
-            <input
-              name="availableUntil"
-              type="time"
-              min="08:00"
-              max="22:00"
-              placeholder="Until (i.e. 12:00)"
-              className="text"
-              id="availableUntil"
-              value={availableUntil}
-              onChange={onAvailableUntilChange}
-              required
-            />
-            <h6>Type</h6>
-            <Select onChange={handleChange} options={options} />
-            
+    <div>
+      <div className="selector-wrapper">
+        <Sidebar />
+        <section className="edit-form-p">
+          <div>
+            <form>
+              <h1>{title}</h1>
+              <h6>Time from</h6>
+              <input
+                name="availableFrom"
+                type="time"
+                min="08:00 AM"
+                max="10:00 PM"
+                placeholder="From (i.e. 08:00)"
+                className="text"
+                id="availableFrom"
+                value={availableFrom}
+                onChange={onAvailableFromChange}
+                required
+              />
+              <h6>Time until</h6>
+              <input
+                name="availableUntil"
+                type="time"
+                min="08:00"
+                max="22:00"
+                placeholder="Until (i.e. 12:00)"
+                className="text"
+                id="availableUntil"
+                value={availableUntil}
+                onChange={onAvailableUntilChange}
+                required
+              />
+              <h6>Type</h6>
+              <Select onChange={handleChange} options={options} />
+
               <input
                 className="inputfile"
                 name="file"
@@ -128,13 +132,18 @@ const EditMenuForm = ({ title }) => {
                   uploadImage(e);
                 }}
               />
-            <label for="file">Upload image
-            </label>
-            <button className="button-edit" onClick={handleEdit}>Submit</button>
-            {requestAccepted ? <></> : <p>Please, fill out the fields.</p>}
-          </form>
-        </div>
-      </section>
+              <label for="file">Upload image</label>
+              <button className="button-edit" onClick={handleEdit}>
+                Submit
+              </button>
+              {requestAccepted ? <></> : <p>Please, fill out the fields.</p>}
+            </form>
+          </div>
+        </section>
+      </div>
+      <div className="addForm-footer">
+        <Footer />
+      </div>
     </div>
   );
 };

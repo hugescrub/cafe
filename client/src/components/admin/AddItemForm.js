@@ -77,7 +77,7 @@ const AddItemForm = ({ title }) => {
         <section className="edit-form-p">
           <div>
             <form>
-              <h1>{"Adding items to " + title + "."}</h1>
+              <h1>{"Adding items to " + title}</h1>
               <h6>Menu name</h6>
               <input
                 name="title"

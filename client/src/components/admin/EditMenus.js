@@ -45,7 +45,7 @@ export default function EditMenus() {
       headers: {
         Authorization: "Basic " + localStorage.getItem("data"),
       },
-    };  
+    };
 
     fetch("http://localhost:8080/menu/" + action + "/" + title, requestOptions)
       .then((res) => {
@@ -70,7 +70,7 @@ export default function EditMenus() {
     if (active) {
       return (
         <button
-          style={{ backgroundColor: "rgba(149, 11, 11, 1)" , width: "97px"}}
+          style={{ backgroundColor: "rgba(149, 11, 11, 1)", width: "97px" }}
           className="button"
           onClick={() => archiveAction("archive", title)}
         >
@@ -142,7 +142,7 @@ export default function EditMenus() {
                     <div className="space" />
                     <Link to={"/admin/menu/additem/" + title}>
                       <button
-                        style={{ backgroundColor: "rgba(155, 162, 46, 1)" }}
+                        style={{ backgroundColor: "rgba(227, 137, 31, 1)" }}
                         className="button"
                       >
                         Add dishes
@@ -154,7 +154,6 @@ export default function EditMenus() {
                 </tr>
               );
             })}
-            
           </tbody>
         </table>
       </div>
