@@ -11,6 +11,7 @@ import Actions from "./admin/Actions";
 import Validate from "../utils/Validate";
 import EditMenuForm from "./admin/EditMenuForm";
 import AddItemForm from "./admin/AddItemForm";
+import CreateItemForm from "./admin/CreateItemForm";
 
 const Main = () => {
   const location = useLocation();
@@ -46,6 +47,8 @@ const Main = () => {
       <Route path="/admin/edit/:title" element={localStorage.getItem("data") ? (
                 Validate() ? <EditMenuForm title={editTitle}/>: <Navigate to="/authorize" />
               ) : <Navigate to="/authorize" />} />
+
+      <Route path="/admin/dishes/create" element={localStorage.getItem("data") ? <CreateItemForm /> : <Navigate to="/authorize" />} />
     </Routes>
   );
 };
