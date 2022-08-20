@@ -66,13 +66,15 @@ export default function ManageDishes() {
 
   const removeButton = (id) => {
     return (
-      <button
-        style={{ backgroundColor: "rgba(149, 11, 11, 1)", width: "97px" }}
-        className="button"
-        onClick={() => removeAction(id)}
-      >
-        Remove
-      </button>
+      <td>
+        <button
+          style={{ backgroundColor: "rgba(149, 11, 11, 1)" }}
+          className="button"
+          onClick={() => removeAction(id)}
+        >
+          Remove
+        </button>
+      </td>
     );
   };
 
@@ -89,8 +91,10 @@ export default function ManageDishes() {
             <tr>
               <th>Name</th>
               <th>Description</th>
-              <th>Type</th>
-              <th className="image-th">Image (click to open fullsize)</th>
+              <th style={{ width: "100px" }}>Type</th>
+              <th className="image-th" style={{ width: "240px" }}>
+                Image (click to open fullsize)
+              </th>
               <th>Price</th>
               <th style={{ width: "100px" }}>Actions</th>
             </tr>

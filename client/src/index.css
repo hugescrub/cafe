@@ -1114,7 +1114,7 @@ label:hover, label:active, input:hover+label, input:active+label {
 }
 
 .item-desc-td {
-  width: 500px;
+  width: 800px;
 }
 
 .item-price-td {
