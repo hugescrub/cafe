@@ -5,7 +5,7 @@ import MenuList from "./menu/MenuList";
 import Item from "./item/Item";
 import Login from "./login/Login";
 import EditMenus from "./admin/EditMenus";
-import ManageMenus from "./admin/ManageMenus";
+import AddMenus from "./admin/AddMenus";
 import ManageDishes from "./admin/ManageDishes";
 import Actions from "./admin/Actions";
 import Validate from "../utils/Validate";
@@ -34,12 +34,12 @@ const Main = () => {
              element={localStorage.getItem("data") ? (
                 Validate() ? <Actions /> : <Navigate to="/authorize" />
               ) : <Navigate to="/authorize" />} />
-      <Route path="/admin/menus/edit" 
+      <Route path="/admin/menus/manage" 
              element={localStorage.getItem("data") ? (
                 Validate() ? <EditMenus /> : <Navigate to="/authorize" />
               ) : <Navigate to="/authorize" />} />
               
-      <Route path="/admin/menus/manage" element={localStorage.getItem("data") ? <ManageMenus /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/menus/add" element={localStorage.getItem("data") ? <AddMenus /> : <Navigate to="/authorize" />} />
       <Route path="/admin/menu/additem/:title" element={<AddItemForm title={editTitle} />} />
       <Route path="/admin/dishes/manage" element={localStorage.getItem("data") ? <ManageDishes /> : <Navigate to="/authorize" />} />
 

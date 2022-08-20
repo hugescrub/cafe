@@ -7,10 +7,10 @@ const Sidebar = () => {
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav" id="menu">
             <li>
-              <Link to="/admin/menus/edit">Edit menus</Link>
+              <Link to="/admin/menus/manage">Manage menus</Link>
             </li>
             <li>
-              <Link to="/admin/menus/manage">Manage menus</Link>
+              <Link to="/admin/menus/add">Add menus</Link>
             </li>
             <li>
               <Link to="/admin/dishes/manage">Manage dishes</Link>
