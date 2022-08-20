@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 const AddItemForm = ({ title }) => {
-  const [patchItems, setPatchItems] = useState();
   const [items, setItems] = useState([]);
   const [sendItems, setSendItems] = useState();
   const selectableItems = [];

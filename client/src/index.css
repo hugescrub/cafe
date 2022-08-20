@@ -1112,3 +1112,11 @@ label:hover, label:active, input:hover+label, input:active+label {
   justify-content: center;
   margin-top: -30px;
 }
+
+.item-desc-td {
+  width: 500px;
+}
+
+.item-price-td {
+  width: 100px;
+}
