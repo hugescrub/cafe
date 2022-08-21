@@ -463,15 +463,14 @@ footer-section {
 }
 
 .admin-photo {
-  height: 40px;
+  object-fit: cover;
+  height: 200px;
   width: 100%;
   border-radius: 0.25rem;
   display: block;
 }
 
 .admin-photo:hover {
-  height: 100px;
-  width: 100%;
   border: 0.25rem solid hsl(362, 78%, 62%);
 }
 
@@ -1130,4 +1129,9 @@ label:hover, label:active, input:hover+label, input:active+label {
   border-radius: 2ch;
   border: 1px solid hsl(0 0% 83%);
   box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+}
+
+.modal-image {
+  display: flex;
+  height: 50px;
 }

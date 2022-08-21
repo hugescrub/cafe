@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Lightbox from "react-image-lightbox";
+import ModalImage from "react-modal-image";
 import { Link } from "react-router-dom";
 import "react-image-lightbox/style.css";
 import Sidebar from "../../utils/Sidebar";
@@ -20,20 +20,15 @@ export default function EditMenus() {
 
   const sortNames = [...EditMenus].sort((a, b) => (a.title > b.title ? 1 : -1));
 
-  const renderImage = (image) => {
+  const renderModalImage = (image) => {
     return (
-      <div>
-        <img
-          onClick={() => setIsOpen(true)}
-          src={`data:image/jpeg;base64,${image}`}
+      <div className="modal-image">
+        <ModalImage
           className="admin-photo"
+          small={`data:image/jpeg;base64,${image}`}
+          large={`data:image/jpeg;base64,${image}`}
+          alt="No image"
         />
-        {isOpen && (
-          <Lightbox
-            mainSrc={`data:image/jpeg;base64,${image}`}
-            onCloseRequest={() => setIsOpen(false)}
-          />
-        )}
       </div>
     );
   };
@@ -126,7 +121,7 @@ export default function EditMenus() {
                   <td>{type}</td>
                   <td>{availableFrom + " - " + availableUntil}</td>
                   <td className="table-image">
-                    {image != null ? renderImage(image) : "No image"}
+                    {image != null ? renderModalImage(image) : "No image"}
                   </td>
                   <td className="actions-td">
                     <Link to={"/admin/edit/" + title}>

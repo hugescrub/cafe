@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Lightbox from "react-image-lightbox";
-import { Link } from "react-router-dom";
-import "react-image-lightbox/style.css";
+import ModalImage from "react-modal-image";
 import Sidebar from "../../utils/Sidebar";
 import Footer from "../Footer";
 
@@ -20,20 +18,15 @@ export default function ManageDishes() {
 
   const sortNames = [...items].sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  const renderImage = (image) => {
+  const renderModalImage = (image) => {
     return (
-      <div>
-        <img
-          onClick={() => setIsOpen(true)}
-          src={`data:image/jpeg;base64,${image}`}
+      <div className="modal-image">
+        <ModalImage
           className="admin-photo"
+          small={`data:image/jpeg;base64,${image}`}
+          large={`data:image/jpeg;base64,${image}`}
+          alt="No image"
         />
-        {isOpen && (
-          <Lightbox
-            mainSrc={`data:image/jpeg;base64,${image}`}
-            onCloseRequest={() => setIsOpen(false)}
-          />
-        )}
       </div>
     );
   };
@@ -106,7 +99,7 @@ export default function ManageDishes() {
                   <td className="item-desc-td">{description}</td>
                   <td>{itemType}</td>
                   <td className="table-image">
-                    {image != null ? renderImage(image) : "No image"}
+                    {image != null ? renderModalImage(image) : "No image"}
                   </td>
                   <td className="item-price-td">{price}&nbsp;₽</td>
                   {removeButton(id)}
