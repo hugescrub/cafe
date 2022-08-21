@@ -7,7 +7,6 @@ export default function Items() {
     fetch('http://localhost:8080/items/all')
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setItems(res);
       })
   }

@@ -17,7 +17,6 @@ export default function MenuList({ type }) {
     fetch("http://localhost:8080/menu?type=" + type)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setMenuList(res);
       });
   };
@@ -26,7 +25,6 @@ export default function MenuList({ type }) {
     fetch("http://localhost:8080/menu/active" + ACTIVE_FLAG)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setMenuList(res);
       });
   };

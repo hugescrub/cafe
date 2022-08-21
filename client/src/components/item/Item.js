@@ -15,7 +15,6 @@ export default function Item() {
     fetch("http://localhost:8080/items?id=" + searchId)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setItem(res);
       });
   };

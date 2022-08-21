@@ -14,7 +14,6 @@ export default function ManageDishes() {
     fetch("http://localhost:8080/items/all")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setItems(res);
       });
   };
@@ -57,7 +56,6 @@ export default function ManageDishes() {
       })
       .then((res) => {
         tableChanged ? setTableChanged(false) : setTableChanged(true);
-        console.log(res);
       })
       .catch((error) => {
         console.log("error: " + error);

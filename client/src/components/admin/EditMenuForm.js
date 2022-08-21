@@ -44,9 +44,6 @@ const EditMenuForm = ({ title }) => {
           return res.json();
         }
       })
-      .then((res) => {
-        console.log(res);
-      })
       .catch((error) => {
         setRequestAccepted(false);
         console.log("error: " + error);
@@ -64,7 +61,6 @@ const EditMenuForm = ({ title }) => {
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToString(file);
-    console.log(base64);
     setImage(base64.substr(base64.indexOf(",") + 1));
   };
 

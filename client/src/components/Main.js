@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import MenuList from "./menu/MenuList";
 import Item from "./item/Item";
@@ -8,7 +8,6 @@ import EditMenus from "./admin/EditMenus";
 import AddMenus from "./admin/AddMenus";
 import ManageDishes from "./admin/ManageDishes";
 import Actions from "./admin/Actions";
-import Validate from "../utils/Validate";
 import EditMenuForm from "./admin/EditMenuForm";
 import AddItemForm from "./admin/AddItemForm";
 import CreateItemForm from "./admin/CreateItemForm";
@@ -31,24 +30,13 @@ const Main = () => {
       <Route path="/authorize" element={<Login />} />
 
       {/*Private routes*/}
-      <Route path="/admin" 
-             element={localStorage.getItem("data") ? (
-                Validate() ? <Actions /> : <Navigate to="/authorize" />
-              ) : <Navigate to="/authorize" />} />
-      <Route path="/admin/menus/manage" 
-             element={localStorage.getItem("data") ? (
-                Validate() ? <EditMenus /> : <Navigate to="/authorize" />
-              ) : <Navigate to="/authorize" />} />
-              
-      <Route path="/admin/menus/add" element={localStorage.getItem("data") ? <AddMenus /> : <Navigate to="/authorize" />} />
+      <Route path="/admin" element={<Actions />} />
+      <Route path="/admin/menus/manage" element={<EditMenus /> } />
+      <Route path="/admin/menus/add" element={<AddMenus />} />
       <Route path="/admin/menu/additem/:title" element={<AddItemForm title={editTitle} />} />
-      <Route path="/admin/dishes/manage" element={localStorage.getItem("data") ? <ManageDishes /> : <Navigate to="/authorize" />} />
-
-      <Route path="/admin/edit/:title" element={localStorage.getItem("data") ? (
-                Validate() ? <EditMenuForm title={editTitle}/>: <Navigate to="/authorize" />
-              ) : <Navigate to="/authorize" />} />
-
-      <Route path="/admin/dishes/create" element={localStorage.getItem("data") ? <CreateItemForm /> : <Navigate to="/authorize" />} />
+      <Route path="/admin/dishes/manage" element={<ManageDishes />} />
+      <Route path="/admin/edit/:title" element={<EditMenuForm title={editTitle} />} />
+      <Route path="/admin/dishes/create" element={<CreateItemForm />} />
     </Routes>
   );
 };

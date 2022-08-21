@@ -40,7 +40,6 @@ export default function Login() {
           "data",
           btoa(`${username}:${password}`)
         );
-        console.log(res);
         setLogin(res);
         navigate("/admin");
       })

@@ -32,7 +32,6 @@ const AddItemForm = ({ title }) => {
 
   const handleChange = (sendItems, actionMeta) => {
     console.group("Items set:");
-    console.log(sendItems);
     setSendItems(sendItems);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
@@ -59,9 +58,6 @@ const AddItemForm = ({ title }) => {
           navigate(-1);
           return res.json();
         }
-      })
-      .then((res) => {
-        console.log(res);
       })
       .catch((error) => {
         console.log("error: " + error);

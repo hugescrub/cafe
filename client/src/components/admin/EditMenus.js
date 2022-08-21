@@ -14,7 +14,6 @@ export default function EditMenus() {
     fetch("http://localhost:8080/menu/all")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setEditMenus(res);
       });
   };
@@ -59,7 +58,6 @@ export default function EditMenus() {
         archiveTriggered
           ? setArchiveTriggered(false)
           : setArchiveTriggered(true);
-        console.log(res);
       })
       .catch((error) => {
         console.log("error: " + error);
@@ -121,7 +119,7 @@ export default function EditMenus() {
               } = menu;
               return (
                 <tr
-                  key={title}
+                  key={id}
                   className={active ? "active-menu" : "inactive-menu"}
                 >
                   <td>{title}</td>

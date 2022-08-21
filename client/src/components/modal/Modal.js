@@ -11,8 +11,6 @@ export default class Modal extends React.Component {
       menu: { id, type, title, img, availableFrom, availableUntil, items },
     } = this.props;
 
-    console.log(this.props);
-
     return (
       <React.Fragment>
         <button
