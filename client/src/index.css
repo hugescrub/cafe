@@ -1120,3 +1120,14 @@ label:hover, label:active, input:hover+label, input:active+label {
 .item-price-td {
   width: 100px;
 }
+
+.menu-card {
+  background: rgb(255, 255, 255);
+  width: 27rem;
+  height: 10rem;
+  display: flex;
+  padding: 3ch;
+  border-radius: 2ch;
+  border: 1px solid hsl(0 0% 83%);
+  box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+}
