@@ -15,6 +15,9 @@ const Sidebar = () => {
             <li>
               <Link to="/admin/dishes/manage">Manage dishes</Link>
             </li>
+            <li>
+              <Link to="/admin/dishes/create">Add dishes</Link>
+            </li>
           </ul>
         </div>
       </div>

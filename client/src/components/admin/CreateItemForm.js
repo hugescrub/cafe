@@ -87,12 +87,12 @@ const CreateItemForm = () => {
         <section className="edit-form-p">
           <div>
             <form>
-              <h1>Adding new item</h1>
-              <h6>Item name</h6>
+              <h1>Adding new dish</h1>
+              <h6>Dish name</h6>
               <input
                 name="name"
                 type="text"
-                placeholder="Item name"
+                placeholder="Dish name"
                 className="text"
                 id="name"
                 value={name}
