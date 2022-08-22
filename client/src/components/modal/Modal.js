@@ -8,7 +8,7 @@ export default class Modal extends React.Component {
 
   render() {
     const {
-      menu: { id, type, title, img, availableFrom, availableUntil, items },
+      menu: { title, availableFrom, availableUntil, items },
     } = this.props;
 
     return (

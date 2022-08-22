@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../utils/Sidebar";
@@ -148,7 +148,7 @@ export default function AddMenus() {
           </div>
         </section>
       </div>
-      <div class="addForm-footer">
+      <div className="addForm-footer">
         <Footer />
       </div>
     </div>

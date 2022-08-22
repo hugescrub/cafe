@@ -5,7 +5,6 @@ import Footer from "../Footer";
 
 export default function ManageDishes() {
   const [items, setItems] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
   const [tableChanged, setTableChanged] = useState(false);
 
   const getData = () => {
@@ -109,7 +108,7 @@ export default function ManageDishes() {
           </tbody>
         </table>
       </div>
-      <div class="shared-footer">
+      <div className="shared-footer">
         <Footer />
       </div>
     </div>

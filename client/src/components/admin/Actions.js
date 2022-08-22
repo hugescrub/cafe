@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer";
 
 export default function Actions() {
   return (
-    <div class="cards">
+    <div className="cards">
       <h2>Available actions</h2>
-      <div class="services">
-        <div class="content content-1">
+      <div className="services">
+        <div className="content content-1">
           <h2>Manage menus</h2>
-          <p class="cards-par">
+          <p className="cards-par">
             Following page allows you to manage existing menus. You can change
             its type, time available or upload a new image. Also, you can
             archive/unarchive menu or add dishes to it.
           </p>
           <Link to="/admin/menus/manage">Continue</Link>
         </div>
-        <div class="content content-2">
+        <div className="content content-2">
           <h2>Add menus</h2>
-          <p class="cards-par">Following page allows you to add new menus.</p>
+          <p className="cards-par">Following page allows you to add new menus.</p>
           <Link to="/admin/menus/add">Continue</Link>
         </div>
-        <div class="content content-3">
+        <div className="content content-3">
           <h2>Manage dishes</h2>
-          <p class="cards-par">
+          <p className="cards-par">
             Following page allows you to add new and delete existing dishes.
           </p>
           <Link to="/admin/dishes/manage">Continue</Link>
         </div>
       </div>
-      <div class="cards-footer">
+      <div className="cards-footer">
         <Footer />
       </div>
     </div>

@@ -7,7 +7,6 @@ import Footer from "../Footer";
 
 export default function EditMenus() {
   const [EditMenus, setEditMenus] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
   const [archiveTriggered, setArchiveTriggered] = useState(false);
 
   const getData = () => {
@@ -150,7 +149,7 @@ export default function EditMenus() {
           </tbody>
         </table>
       </div>
-      <div class="shared-footer">
+      <div className="shared-footer">
         <Footer />
       </div>
     </div>

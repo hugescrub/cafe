@@ -54,8 +54,8 @@ export default function MenuList({ type }) {
           const { id, type, title, availableFrom, availableUntil, image } =
             menu;
           return (
-            <div className="menu-card">
-              <article key={id} className="menu-element">
+            <div key={id} className="menu-card">
+              <article className="menu-element">
                 <img
                   src={`data:image/jpeg;base64,${image}`}
                   alt={title}

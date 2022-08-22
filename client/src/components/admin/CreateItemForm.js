@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import Sidebar from "../../utils/Sidebar";
@@ -145,7 +145,7 @@ const CreateItemForm = () => {
           </div>
         </section>
       </div>
-      <div class="addForm-footer">
+      <div className="addForm-footer">
         <Footer />
       </div>
     </div>
