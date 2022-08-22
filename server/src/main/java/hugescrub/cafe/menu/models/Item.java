@@ -28,7 +28,7 @@ public class Item {
     private EItem itemType;
 
     @NotBlank
-    @Size(max = 150)
+    @Size(max = 250)
     private String description;
 
     @Column(columnDefinition = "longblob")

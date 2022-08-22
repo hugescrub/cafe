@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/auth/login",
+                .authorizeRequests().antMatchers("/auth/login", "/auth/register",
                         "/menu/all", "/menu/{title}", "/menu/available", "/menu/active/{active_flag}",
                         "/items/all", "/items/{itemType}").permitAll()
                 .regexMatchers("^\\/items\\?id=\\d(?:\\d+)?$", "^\\/menu\\?type=(?:BREAKFAST|GENERIC|DINNER|LUNCH)$").permitAll()
