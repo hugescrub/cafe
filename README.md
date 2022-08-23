@@ -5,7 +5,7 @@ A simple cafe application with various menus and dishes.
 
 Main page is provided with filtering existing menus by its type: Breakfast, Lunch, Dinner or Generic (available anytime).
 
-You can inspect each menu and see the dishes inside, upon clicking button you will see a popup with the dishes, here you can click its name and see item page with the picture, price and full description.
+You can inspect each menu and see the dishes inside, upon clicking button you will see a popup with the dishes, here you can click its name and see dish page with the picture, price and full description.
 
 In header, there is **Authorize** link which will take you to login page, default credentials are: `username - username, password - password`. Next, you'll see admin page, suggesting to choose desired action. 
 
@@ -60,13 +60,13 @@ Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD
 </details>
 
 <details>
-  <summary>Edit items page</summary>
+  <summary>Edit dishes page</summary>
    
   ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-3.png?raw=true)
 </details>
 
 <details>
-  <summary>Create item form</summary>
+  <summary>Create dish form</summary>
    
   ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-4.png?raw=true)
 </details>
