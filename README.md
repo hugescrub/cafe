@@ -1,13 +1,15 @@
 ## Cafe application
 A simple cafe application with various menus and dishes.
 
+### Summary
+
 Main page is provided with filtering existing menus by its type: Breakfast, Lunch, Dinner or Generic (available anytime).
 
 You can inspect each menu and see the dishes inside, upon clicking button you will see a popup with the dishes, here you can click its name and see item page with the picture, price and full description.
 
-On header, there is **Authorize** link which will take you to login page, default credentials are: `username - username, password - password`. Next, you'll see admin page, suggesting to choose desired action. 
+In header, there is **Authorize** link which will take you to login page, default credentials are: `username - username, password - password`. Next, you'll see admin page, suggesting to choose desired action. 
 
-You can **edit** menus, **create** new ones, **archive** them and *add* single or many dishes to it, the list of available dishes depends on items already added to the menu.
+You can **edit** menus, **create** new ones, **archive** them and **add** single or many dishes to it, the list of available dishes depends on dishes already added to the menu.
 
 Same with dishes, but you cannot archive or edit them, the only available action is **remove**. 
 
@@ -26,15 +28,54 @@ Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD
 
     **Node version: v12.22.9**
     
-## 
+## Screenshots
+<details>
+  <summary>Main page</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/mainPage.png?raw=true)
+</details>
 
-## Upcoming Readme additions
+<details>
+  <summary>Menu cards</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/menuCards.png?raw=true)
+</details>
 
-Launch guide
+<details>
+  <summary>Admin actions</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/adminWelcome.png?raw=true)
+</details>
 
-Screenshots
+<details>
+  <summary>Edit menus page</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-1.png?raw=true)
+</details>
 
-More detailed summary
+<details>
+  <summary>Create menu form</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-2.png?raw=true)
+</details>
+
+<details>
+  <summary>Edit items page</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-3.png?raw=true)
+</details>
+
+<details>
+  <summary>Create item form</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-4.png?raw=true)
+</details>
+
+<details>
+  <summary>Admin panel lightbox</summary>
+   
+  ![alt text](https://github.com/hugescrub/utils/blob/main/adminPanel-lightbox.png?raw=true)
+</details>
 
 
 
