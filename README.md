@@ -22,7 +22,7 @@ Authentication is made for the ***Manager*** or ***Admin*** who can perform CRUD
 2. Initialize database using [script](https://github.com/hugescrub/cafe/blob/main/server/databaseInit.sql) from `./cafe/server/` and ensure everything imported successfully
 3. `cd ./cafe/server/` -> `mvn spring-boot:run`
 
-    **Note: your $JAVA_HOME variable should be pointing on JDK11**
+    **Note: your $JAVA_HOME variable should be pointing to JDK11**
 
 6. `cd ../client/` -> `npm install` -> `npm start`
 
