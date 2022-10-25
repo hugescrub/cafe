@@ -3,6 +3,7 @@ package hugescrub.cafe.menu.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,6 +22,7 @@ public class Item {
     private String name;
 
     @NotNull
+    @Positive
     private Double price;
 
     @NotNull

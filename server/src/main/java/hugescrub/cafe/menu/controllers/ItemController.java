@@ -93,6 +93,11 @@ public class ItemController {
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     public ResponseEntity<?> addItem(@RequestBody ItemDto itemDto) {
+        if(itemDto.getPrice() <= 0) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Invalid item price."));
+        }
         if (!itemRepository.existsByName(itemDto.getName())) {
             itemService.build(itemDto);
             return ResponseEntity
