@@ -123,6 +123,7 @@ class ItemControllerTest {
                 .header("Authorization", "Basic " +
                         Base64.getEncoder().encodeToString("username:password".getBytes())))
                 .andDo(print())
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").exists());
     }
 }
