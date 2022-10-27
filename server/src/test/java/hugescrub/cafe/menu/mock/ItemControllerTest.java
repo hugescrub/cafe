@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Base64;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,14 +24,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ItemControllerTest {
 
+    private final MockMvc mvc;
+
     @Autowired
-    private MockMvc mvc;
+    public ItemControllerTest(MockMvc mvc) {
+        this.mvc = mvc;
+    }
 
     @Test
     public void getItemsTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/items/all")
                         .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*]").isNotEmpty());
     }
@@ -87,5 +91,25 @@ class ItemControllerTest {
                         Base64.getEncoder().encodeToString("username:password".getBytes())
                 )
         ).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void getItemsByTypeTest() throws Exception {
+        String type = "classic";
+        mvc.perform(MockMvcRequestBuilders
+                .get("/items/" + type)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[*]").isNotEmpty());
+    }
+
+    @Test
+    public void getItemsByWrongTypeTest() throws Exception {
+        String type = "randStr";
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/items/" + type)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Illegal item type."));
     }
 }
