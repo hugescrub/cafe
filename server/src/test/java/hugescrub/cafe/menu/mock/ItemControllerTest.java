@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.Timed;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -32,6 +33,7 @@ class ItemControllerTest {
     }
 
     @Test
+    @Timed(millis = 5000)
     public void getItemsTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/items/all")
@@ -67,9 +69,8 @@ class ItemControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(item))
                 .header("Authorization", "Basic " +
-                        Base64.getEncoder().encodeToString("username:password".getBytes())
-                )
-        ).andExpect(status().isOk());
+                        Base64.getEncoder().encodeToString("username:password".getBytes())))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -88,9 +89,8 @@ class ItemControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(item))
                 .header("Authorization", "Basic " +
-                        Base64.getEncoder().encodeToString("username:password".getBytes())
-                )
-        ).andExpect(status().isBadRequest());
+                        Base64.getEncoder().encodeToString("username:password".getBytes())))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -111,5 +111,18 @@ class ItemControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Illegal item type."));
+    }
+
+    @Test
+    @Transactional
+    public void removeItemByNegativeIdTest() throws Exception {
+        long id = -10L;
+        mvc.perform(MockMvcRequestBuilders
+                .delete("/items/remove/" + id)
+                .accept(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic " +
+                        Base64.getEncoder().encodeToString("username:password".getBytes())))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 }
