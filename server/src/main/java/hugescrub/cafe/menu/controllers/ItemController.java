@@ -77,16 +77,24 @@ public class ItemController {
 
     @GetMapping("/{itemType}")
     public ResponseEntity<?> getItemsByType(@PathVariable String itemType) {
-        if (itemRepository.existsByItemType(EItem.valueOf(itemType))) {
-            List<Item> items = itemRepository.findAllByItemType(EItem.valueOf(itemType));
-            log.info("Requested all items with item type: " + itemType);
-            return ResponseEntity
-                    .ok()
-                    .body(items);
-        } else {
+        try {
+            EItem type = EItem.valueOf(itemType.toUpperCase());
+            if (itemRepository.existsByItemType(type)) {
+                List<Item> items = itemRepository.findAllByItemType(type);
+                log.info("Requested all items with item type: " + itemType);
+                return ResponseEntity
+                        .ok()
+                        .body(items);
+            } else {
+                return ResponseEntity
+                        .badRequest()
+                        .body(new MessageResponse("Nothing found with item type: " + itemType));
+            }
+        } catch (IllegalArgumentException e) {
+            log.warn(e.getMessage());
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Nothing found with item type: " + itemType));
+                    .body(new MessageResponse("Illegal item type."));
         }
     }
 
