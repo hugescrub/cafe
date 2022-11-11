@@ -3,7 +3,7 @@ A simple cafe application with various menus and dishes.
 
 ### Summary
 
-Main page is provided with filtering existing menus by its type: Breakfast, Lunch, Dinner or Generic (available anytime). ***Only active menus show up.***
+Main page is provided with filtering existing menus by their type: Breakfast, Lunch, Dinner or Generic (available anytime). ***Only active menus show up.***
 
 You can inspect each menu and see the dishes inside, upon clicking button you will see a popup with the dishes, here you can click its name and see dish page with the picture, price and full description.
 
